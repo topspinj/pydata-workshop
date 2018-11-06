@@ -1,0 +1,101 @@
+<!doctype html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<title>An introduction to recommendation systems</title>
+
+	<link rel="stylesheet" href="css/reveal.css">
+	<link rel="stylesheet" href="css/theme/white.css">
+	<!-- Theme used for syntax highlighting of code -->
+	<link rel="stylesheet" href="lib/css/zenburn.css">
+
+	<!-- Printing and PDF exports -->
+	<script>
+		var link = document.createElement('link');
+		link.rel = 'stylesheet';
+		link.type = 'text/css';
+		link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+		document.getElementsByTagName('head')[0].appendChild(link);
+	</script>
+</head>
+
+<body>
+	<div class="reveal">
+		<div class="slides">
+			<section>
+				<h3 class="pres_title">Building a recommender system from scratch</h3>
+				<p>Jill Cates</p>
+				<p>Data Scientist at BioSymetrics</p>
+				<p>November 16th, 2018  •  Washington, DC</p>
+			</section>
+			<section data-markdown>
+				## Agenda
+
+				- What is a recommender system?
+					- Motivation
+					- Examples
+				- Recommender techniques
+					- Collaborative filtering
+					- Content-based filtering
+				- Tutorial
+			</section>
+			<section>
+				<h3>What is a recommendation system?</h3>
+				<p>An application of machine learning</p>
+			</section>
+			<section>
+				<h3>Recommenders in the wild</h3>
+				<p>Spotify</p>
+				<p>Amazon</p>
+				<p>Netflix</p>
+				<p>OkCupid</p>
+				<p>Twitter</p>
+			</section>
+			<section>
+				<h3></h3>
+			</section>
+		
+
+
+
+			<section>
+				<img src="https://media.giphy.com/media/26DOMeaD2gdGE44LK/giphy.gif"/>
+				<p>Data Scientist at BioSymetrics</p>
+				<p>github: @topspinj</p>
+				<p>cates.jill@gmail.com</p>
+			</section>
+
+		</div>
+	</div>
+
+	<script src="lib/js/head.min.js"></script>
+	<script src="js/reveal.js"></script>
+
+	<script>
+		Reveal.initialize({
+			dependencies: [{
+					src: 'plugin/markdown/marked.js'
+				},
+				{
+					src: 'plugin/markdown/markdown.js'
+				},
+				{
+					src: 'plugin/notes/notes.js',
+					async: true
+				},
+				{
+					src: 'plugin/highlight/highlight.js',
+					async: true,
+					callback: function () {
+						hljs.initHighlightingOnLoad();
+					}
+				}
+			]
+		});
+	</script>
+</body>
+
+</html>

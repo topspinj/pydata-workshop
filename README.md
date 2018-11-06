@@ -16,4 +16,4 @@ By the end of this workshop, you will have a better understanding of the differe
 - Python 3+
 - pandas
 - numpy
-- scikit-learn
+- matplotlib
