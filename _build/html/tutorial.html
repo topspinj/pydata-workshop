@@ -85,6 +85,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#Step-3:-Exploratory-Data-Analysis">Step 3: Exploratory Data Analysis</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#Best-vs.&nbsp;Worst-Movie">Best vs.&nbsp;Worst Movie</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#Bayesian-Average">Bayesian Average</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#A-Glimpse-at-Movie-Genres">A Glimpse at Movie Genres</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#Step-4:-Data-Pre-processing">Step 4: Data Pre-processing</a><ul>
@@ -92,6 +93,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#Step-5:-Item-item-Recommendations-with-k-Nearest-Neighbors">Step 5: Item-item Recommendations with k-Nearest Neighbors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Step-6:-Handling-the-cold-start-problem">Step 6: Handling the cold-start problem</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#Part-2:-Top-N-recommender">Part 2: Top N recommender</a></li>
 </ul>
 </li>
@@ -442,7 +444,7 @@ Average number of ratings per movie: 11.03
 </div>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [6]:
+<span></span>In [104]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -791,6 +793,165 @@ critically acclaimed films.</p>
 <code class="docutils literal notranslate"><span class="pre">Speed</span> <span class="pre">2:</span> <span class="pre">Cruise</span> <span class="pre">Control</span></code> and <code class="docutils literal notranslate"><span class="pre">Wild</span> <span class="pre">Wild</span> <span class="pre">West</span></code> are the worst rated
 movies. <code class="docutils literal notranslate"><span class="pre">Santa</span> <span class="pre">with</span> <span class="pre">Muscles</span></code> isn’t so bad after all.</p>
 </div>
+<div class="section" id="A-Glimpse-at-Movie-Genres">
+<h3>A Glimpse at Movie Genres<a class="headerlink" href="#A-Glimpse-at-Movie-Genres" title="Permalink to this headline">¶</a></h3>
+<p>The movies dataset needs to be cleaned in two ways:</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">genres</span></code> is expressed as a string with a pipe <code class="docutils literal notranslate"><span class="pre">|</span></code> separating each
+genre. We will manipulate this string into a list, which will make it
+much easier to analyze.</li>
+<li><code class="docutils literal notranslate"><span class="pre">title</span></code> currently has (year) appended at the end. We will extract
+year from each title string and create a new column for it.</li>
+</ul>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [105]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">movies</span><span class="p">[</span><span class="s2">&quot;genres&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">movies</span><span class="p">[</span><span class="s2">&quot;genres&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;|&quot;</span><span class="p">))</span>
+<span class="n">movies</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>Out[105]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>movieId</th>
+      <th>title</th>
+      <th>genres</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>Toy Story (1995)</td>
+      <td>[Adventure, Animation, Children, Comedy, Fantasy]</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>Jumanji (1995)</td>
+      <td>[Adventure, Children, Fantasy]</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>Grumpier Old Men (1995)</td>
+      <td>[Comedy, Romance]</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>Waiting to Exhale (1995)</td>
+      <td>[Comedy, Drama, Romance]</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5</td>
+      <td>Father of the Bride Part II (1995)</td>
+      <td>[Comedy]</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<p><strong>How many movie genres are there?</strong></p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [106]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">collections</span> <span class="k">import</span> <span class="n">Counter</span>
+
+<span class="n">genre_frequency</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">(</span><span class="n">g</span> <span class="k">for</span> <span class="n">genres</span> <span class="ow">in</span> <span class="n">movies</span><span class="p">[</span><span class="s1">&#39;genres&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="n">genres</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;There are {len(genre_frequency)} genres.&quot;</span><span class="p">)</span>
+
+<span class="n">genre_frequency</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+There are 20 genres.
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>Out[106]:
+</pre></div>
+</div>
+<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>Counter({&#39;Adventure&#39;: 1117,
+         &#39;Animation&#39;: 447,
+         &#39;Children&#39;: 583,
+         &#39;Comedy&#39;: 3315,
+         &#39;Fantasy&#39;: 654,
+         &#39;Romance&#39;: 1545,
+         &#39;Drama&#39;: 4365,
+         &#39;Action&#39;: 1545,
+         &#39;Crime&#39;: 1100,
+         &#39;Thriller&#39;: 1729,
+         &#39;Horror&#39;: 877,
+         &#39;Mystery&#39;: 543,
+         &#39;Sci-Fi&#39;: 792,
+         &#39;Documentary&#39;: 495,
+         &#39;IMAX&#39;: 153,
+         &#39;War&#39;: 367,
+         &#39;Musical&#39;: 394,
+         &#39;Western&#39;: 168,
+         &#39;Film-Noir&#39;: 133,
+         &#39;(no genres listed)&#39;: 18})
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [107]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The 5 most common genres: </span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">genre_frequency</span><span class="o">.</span><span class="n">most_common</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+The 5 most common genres:
+ [(&#39;Drama&#39;, 4365), (&#39;Comedy&#39;, 3315), (&#39;Thriller&#39;, 1729), (&#39;Romance&#39;, 1545), (&#39;Action&#39;, 1545)]
+</pre></div></div>
+</div>
+</div>
 </div>
 <div class="section" id="Step-4:-Data-Pre-processing">
 <h2>Step 4: Data Pre-processing<a class="headerlink" href="#Step-4:-Data-Pre-processing" title="Permalink to this headline">¶</a></h2>
@@ -829,6 +990,9 @@ which stores the data sparsely.</p>
 </div>
 <div class="section" id="Evaluating-sparsity">
 <h3>Evaluating sparsity<a class="headerlink" href="#Evaluating-sparsity" title="Permalink to this headline">¶</a></h3>
+<p>Here, we calculate sparsity by dividing the number of stored elements by
+total number of elements. The number of stored (non-empty) elements in
+our matrix is equivalent to the number of ratings in our dataset.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
 <span></span>In [88]:
@@ -850,17 +1014,21 @@ which stores the data sparsely.</p>
 Matrix sparsity: 1.64%
 </pre></div></div>
 </div>
-<p><code class="docutils literal notranslate"><span class="pre">csr_matrix.nnz</span></code> gets the count of stored values in our sparse matrix.
-The rest of our cells are empty cells.</p>
+<p><code class="docutils literal notranslate"><span class="pre">csr_matrix.nnz</span></code> counts the stored values in our sparse matrix. The
+rest of our cells are empty.</p>
 <p>The <strong>cold start problem</strong> is when there are new users and movies in our
 matrix that do not have any ratings. In our Movielens dataset, all users
-and movies have at least one rating.</p>
+and movies have at least one rating but in general, it’s useful to check
+which users and movies have few interactions.</p>
 </div>
 </div>
 <div class="section" id="Step-5:-Item-item-Recommendations-with-k-Nearest-Neighbors">
 <h2>Step 5: Item-item Recommendations with k-Nearest Neighbors<a class="headerlink" href="#Step-5:-Item-item-Recommendations-with-k-Nearest-Neighbors" title="Permalink to this headline">¶</a></h2>
 <p>We are going to find the <span class="math notranslate nohighlight">\(k\)</span> movies that have the most similar
 user engagement vectors for movie <span class="math notranslate nohighlight">\(i\)</span>.</p>
+</div>
+<div class="section" id="Step-6:-Handling-the-cold-start-problem">
+<h2>Step 6: Handling the cold-start problem<a class="headerlink" href="#Step-6:-Handling-the-cold-start-problem" title="Permalink to this headline">¶</a></h2>
 </div>
 <div class="section" id="Part-2:-Top-N-recommender">
 <h2>Part 2: Top N recommender<a class="headerlink" href="#Part-2:-Top-N-recommender" title="Permalink to this headline">¶</a></h2>
