@@ -80,12 +80,6 @@
               <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Building a Recommender System from Scratch</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#What-is-a-recommender?">What is a recommender?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#How-do-you-build-a-recommender?">How do you build a recommender?</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#Collaborative-Filtering">Collaborative Filtering</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#Content-based-filtering">Content-based filtering</a></li>
-</ul>
-</li>
 <li class="toctree-l2"><a class="reference internal" href="#Step-1:-Import-Dependencies">Step 1: Import Dependencies</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#Step-2:-Load-Data">Step 2: Load Data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#Step-3:-Exploratory-Data-Analysis">Step 3: Exploratory Data Analysis</a><ul>
@@ -350,25 +344,19 @@ div.nboutput div.output_area.stderr {
 </style>
 <div class="section" id="Building-a-Recommender-System-from-Scratch">
 <h1>Building a Recommender System from Scratch<a class="headerlink" href="#Building-a-Recommender-System-from-Scratch" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="What-is-a-recommender?">
-<h2>What is a recommender?<a class="headerlink" href="#What-is-a-recommender?" title="Permalink to this headline">¶</a></h2>
-</div>
-<div class="section" id="How-do-you-build-a-recommender?">
-<h2>How do you build a recommender?<a class="headerlink" href="#How-do-you-build-a-recommender?" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="Collaborative-Filtering">
-<h3>Collaborative Filtering<a class="headerlink" href="#Collaborative-Filtering" title="Permalink to this headline">¶</a></h3>
-</div>
-<div class="section" id="Content-based-filtering">
-<h3>Content-based filtering<a class="headerlink" href="#Content-based-filtering" title="Permalink to this headline">¶</a></h3>
-</div>
-</div>
 <div class="section" id="Step-1:-Import-Dependencies">
 <h2>Step 1: Import Dependencies<a class="headerlink" href="#Step-1:-Import-Dependencies" title="Permalink to this headline">¶</a></h2>
+<p>We are using
+<a class="reference external" href="http://pandas.pydata.org/pandas-docs/version/0.19/generated/pandas.DataFrame.html">pandas.DataFrame</a>
+to represent our data. We will visualize our data with
+<a class="reference external" href="https://matplotlib.org/">matplotlib</a> and
+<a class="reference external" href="https://seaborn.pydata.org/">seaborn</a>.</p>
+<p><strong>What is a DataFrame?</strong></p>
 <ul class="simple">
-<li>Representing our dataset as a <code class="docutils literal notranslate"><span class="pre">pandas</span></code> dataframe</li>
-<li>Represneting our user-item matrix as a <code class="docutils literal notranslate"><span class="pre">scipy.sparse.csr_matrix</span></code></li>
-<li>Visualizing data with <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> and <code class="docutils literal notranslate"><span class="pre">seaborn</span></code> (a matplotlib
-wrapper)</li>
+<li>a two-dimensional Pandas data structure</li>
+<li>columns represent features, rows represent items</li>
+<li>analogous to an Excel spreadsheet or SQL table</li>
+<li>documentation can be found here</li>
 </ul>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
@@ -468,7 +456,7 @@ Average number of ratings per movie: 11.03
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="_images/tutorial_11_0.png" src="_images/tutorial_11_0.png" />
+<img alt="_images/tutorial_9_0.png" src="_images/tutorial_9_0.png" />
 </div>
 </div>
 <div class="section" id="Best-vs.&nbsp;Worst-Movie">
@@ -865,9 +853,8 @@ Matrix sparsity: 1.64%
 <p><code class="docutils literal notranslate"><span class="pre">csr_matrix.nnz</span></code> gets the count of stored values in our sparse matrix.
 The rest of our cells are empty cells.</p>
 <p>The <strong>cold start problem</strong> is when there are new users and movies in our
-matrix that do not hav</p>
-<p>It’s also very important to check if there are any users or items in our
-matrix that do not have any ratings.</p>
+matrix that do not have any ratings. In our Movielens dataset, all users
+and movies have at least one rating.</p>
 </div>
 </div>
 <div class="section" id="Step-5:-Item-item-Recommendations-with-k-Nearest-Neighbors">
