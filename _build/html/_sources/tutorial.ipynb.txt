@@ -25,7 +25,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 2,
+   "execution_count": 110,
    "metadata": {},
    "outputs": [],
    "source": [
@@ -59,7 +59,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 3,
+   "execution_count": 111,
    "metadata": {},
    "outputs": [],
    "source": [
@@ -68,7 +68,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 4,
+   "execution_count": 112,
    "metadata": {},
    "outputs": [],
    "source": [
@@ -84,7 +84,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 5,
+   "execution_count": 113,
    "metadata": {},
    "outputs": [
     {
@@ -113,7 +113,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 104,
+   "execution_count": 114,
    "metadata": {},
    "outputs": [
     {
@@ -146,7 +146,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 61,
+   "execution_count": 115,
    "metadata": {},
    "outputs": [
     {
@@ -191,7 +191,7 @@
        "1062     1311  Santa with Muscles (1996)  Comedy"
       ]
      },
-     "execution_count": 61,
+     "execution_count": 115,
      "metadata": {},
      "output_type": "execute_result"
     }
@@ -211,7 +211,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 72,
+   "execution_count": 116,
    "metadata": {},
    "outputs": [
     {
@@ -256,7 +256,7 @@
        "50       53  Lamerica (1994)  Adventure|Drama"
       ]
      },
-     "execution_count": 72,
+     "execution_count": 116,
      "metadata": {},
      "output_type": "execute_result"
     }
@@ -288,7 +288,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 64,
+   "execution_count": 117,
    "metadata": {},
    "outputs": [],
    "source": [
@@ -298,7 +298,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 65,
+   "execution_count": 118,
    "metadata": {},
    "outputs": [],
    "source": [
@@ -316,7 +316,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 73,
+   "execution_count": 119,
    "metadata": {},
    "outputs": [
     {
@@ -349,7 +349,7 @@
        "  </thead>\n",
        "  <tbody>\n",
        "    <tr>\n",
-       "      <th>0</th>\n",
+       "      <th>284</th>\n",
        "      <td>318</td>\n",
        "      <td>311</td>\n",
        "      <td>4.487138</td>\n",
@@ -357,7 +357,7 @@
        "      <td>Shawshank Redemption, The (1994)</td>\n",
        "    </tr>\n",
        "    <tr>\n",
-       "      <th>1</th>\n",
+       "      <th>695</th>\n",
        "      <td>858</td>\n",
        "      <td>200</td>\n",
        "      <td>4.487500</td>\n",
@@ -365,7 +365,7 @@
        "      <td>Godfather, The (1972)</td>\n",
        "    </tr>\n",
        "    <tr>\n",
-       "      <th>2</th>\n",
+       "      <th>48</th>\n",
        "      <td>50</td>\n",
        "      <td>201</td>\n",
        "      <td>4.370647</td>\n",
@@ -373,7 +373,7 @@
        "      <td>Usual Suspects, The (1995)</td>\n",
        "    </tr>\n",
        "    <tr>\n",
-       "      <th>3</th>\n",
+       "      <th>977</th>\n",
        "      <td>1221</td>\n",
        "      <td>135</td>\n",
        "      <td>4.385185</td>\n",
@@ -381,7 +381,7 @@
        "      <td>Godfather: Part II, The (1974)</td>\n",
        "    </tr>\n",
        "    <tr>\n",
-       "      <th>4</th>\n",
+       "      <th>472</th>\n",
        "      <td>527</td>\n",
        "      <td>244</td>\n",
        "      <td>4.303279</td>\n",
@@ -393,15 +393,15 @@
        "</div>"
       ],
       "text/plain": [
-       "   movieId  count      mean  bayesian_avg                             title\n",
-       "0      318    311  4.487138      4.446203  Shawshank Redemption, The (1994)\n",
-       "1      858    200  4.487500      4.425014             Godfather, The (1972)\n",
-       "2       50    201  4.370647      4.314534        Usual Suspects, The (1995)\n",
-       "3     1221    135  4.385185      4.302614    Godfather: Part II, The (1974)\n",
-       "4      527    244  4.303279      4.259541           Schindler's List (1993)"
+       "     movieId  count      mean  bayesian_avg                             title\n",
+       "284      318    311  4.487138      4.446203  Shawshank Redemption, The (1994)\n",
+       "695      858    200  4.487500      4.425014             Godfather, The (1972)\n",
+       "48        50    201  4.370647      4.314534        Usual Suspects, The (1995)\n",
+       "977     1221    135  4.385185      4.302614    Godfather: Part II, The (1974)\n",
+       "472      527    244  4.303279      4.259541           Schindler's List (1993)"
       ]
      },
-     "execution_count": 73,
+     "execution_count": 119,
      "metadata": {},
      "output_type": "execute_result"
     }
@@ -420,7 +420,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 71,
+   "execution_count": 120,
    "metadata": {},
    "outputs": [
     {
@@ -505,7 +505,7 @@
        "1243     1562     47  2.148936      2.366224           Batman & Robin (1997)"
       ]
      },
-     "execution_count": 71,
+     "execution_count": 120,
      "metadata": {},
      "output_type": "execute_result"
     }
@@ -535,7 +535,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 105,
+   "execution_count": 121,
    "metadata": {},
    "outputs": [
     {
@@ -615,13 +615,13 @@
        "4                                           [Comedy]  "
       ]
      },
-     "execution_count": 105,
+     "execution_count": 121,
      "metadata": {},
      "output_type": "execute_result"
     }
    ],
    "source": [
-    "movies[\"genres\"] = movies[\"genres\"].apply(lambda x: x.split(\"|\"))\n",
+    "movies['genres'] = movies['genres'].apply(lambda x: x.split(\"|\"))\n",
     "movies.head()"
    ]
   },
@@ -634,7 +634,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 106,
+   "execution_count": 122,
    "metadata": {},
    "outputs": [
     {
@@ -669,7 +669,7 @@
        "         '(no genres listed)': 18})"
       ]
      },
-     "execution_count": 106,
+     "execution_count": 122,
      "metadata": {},
      "output_type": "execute_result"
     }
@@ -686,7 +686,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 107,
+   "execution_count": 123,
    "metadata": {},
    "outputs": [
     {
@@ -728,11 +728,41 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 81,
+   "execution_count": 132,
    "metadata": {},
    "outputs": [],
    "source": [
-    "from utils import create_X\n",
+    "from scipy.sparse import csr_matrix\n",
+    "\n",
+    "def create_X(df):\n",
+    "    \"\"\"\n",
+    "    Generates a sparse matrix from ratings dataframe.\n",
+    "    \n",
+    "    Args:\n",
+    "        df: pandas dataframe containing 3 columns (userId, movieId, rating)\n",
+    "    \n",
+    "    Returns:\n",
+    "        X: sparse matrix\n",
+    "        user_mapper: dict that maps user id's to user indices\n",
+    "        user_inv_mapper: dict that maps user indices to user id's\n",
+    "        movie_mapper: dict that maps movie id's to movie indices\n",
+    "        movie_inv_mapper: dict that maps movie indices to movie id's\n",
+    "    \"\"\"\n",
+    "    N = df['userId'].nunique()\n",
+    "    M = df['movieId'].nunique()\n",
+    "\n",
+    "    user_mapper = dict(zip(np.unique(df[\"userId\"]), list(range(N))))\n",
+    "    movie_mapper = dict(zip(np.unique(df[\"movieId\"]), list(range(M))))\n",
+    "    \n",
+    "    user_inv_mapper = dict(zip(list(range(N)), np.unique(df[\"userId\"])))\n",
+    "    movie_inv_mapper = dict(zip(list(range(M)), np.unique(df[\"movieId\"])))\n",
+    "    \n",
+    "    user_index = [user_mapper[i] for i in df['userId']]\n",
+    "    item_index = [movie_mapper[i] for i in df['movieId']]\n",
+    "\n",
+    "    X = csr_matrix((df[\"rating\"], (item_index, user_index)), shape=(M, N))\n",
+    "    \n",
+    "    return X, user_mapper, movie_mapper, user_inv_mapper, movie_inv_mapper\n",
     "\n",
     "X, user_mapper, movie_mapper, user_inv_mapper, movie_inv_mapper = create_X(ratings)"
    ]
@@ -748,7 +778,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 88,
+   "execution_count": 125,
    "metadata": {},
    "outputs": [
     {
@@ -790,17 +820,468 @@
    ]
   },
   {
-   "cell_type": "markdown",
+   "cell_type": "code",
+   "execution_count": 143,
    "metadata": {},
+   "outputs": [],
    "source": [
-    "### Step 6: Handling the cold-start problem"
+    "from sklearn.neighbors import NearestNeighbors\n",
+    "\n",
+    "def find_similar_movies(movie_id, X, k, metric='cosine'):\n",
+    "    \"\"\"\n",
+    "    Finds k-nearest neighbours for a given movie id.\n",
+    "    \n",
+    "    Args:\n",
+    "        movie_id: id of the movie of interest\n",
+    "        X: user-item utility matrix\n",
+    "        k: number of similar movies to retrieve\n",
+    "        metric: distance metric for kNN calculations\n",
+    "    \n",
+    "    Output: returns list of k similar movie ID's\n",
+    "    \"\"\"\n",
+    "    neighbour_ids = []\n",
+    "    \n",
+    "    movie_ind = movie_mapper[movie_id]\n",
+    "    movie_vec = X[movie_ind]\n",
+    "    k+=1\n",
+    "    kNN = NearestNeighbors(n_neighbors=k, algorithm=\"brute\", metric=metric)\n",
+    "    kNN.fit(X)\n",
+    "    if isinstance(movie_vec, (np.ndarray)):\n",
+    "        movie_vec = movie_vec.reshape(1,-1)\n",
+    "    neighbour = kNN.kneighbors(movie_vec, return_distance=False)\n",
+    "    for i in range(0,k):\n",
+    "        n = neighbour.item(i)\n",
+    "        neighbour_ids.append(movie_inv_mapper[n])\n",
+    "    neighbour_ids.pop(0)\n",
+    "    return neighbour_ids"
    ]
   },
   {
    "cell_type": "markdown",
    "metadata": {},
    "source": [
-    "### Part 2: Top N recommender"
+    "`find_similar_movies()` takes in a `movieId` and `X` matrix, and outputs a list of $k$ movies that are similar to the `movieId` of interest.\n",
+    "\n",
+    "Let's see how it works in action. We will first create another mapper that maps movieId to title so that our results are interpretable."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 148,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "[500, 364, 317, 367, 595, 588, 344, 587, 480, 377]"
+      ]
+     },
+     "execution_count": 148,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "similar_movies = find_similar_movies(2, X, k=10)\n",
+    "similar_movies"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "`find_similar_movies()` returns a list of `movieId`'s that are most similar to your movie of interest. Let's convert these id's to titles so that we can interpret our results. To make things easier, we will create a dictionary that maps `movieId` to `title`."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 149,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Because you watched Jumanji (1995):\n",
+      "Mrs. Doubtfire (1993)\n",
+      "Lion King, The (1994)\n",
+      "Santa Clause, The (1994)\n",
+      "Mask, The (1994)\n",
+      "Beauty and the Beast (1991)\n",
+      "Aladdin (1992)\n",
+      "Ace Ventura: Pet Detective (1994)\n",
+      "Ghost (1990)\n",
+      "Jurassic Park (1993)\n",
+      "Speed (1994)\n"
+     ]
+    }
+   ],
+   "source": [
+    "movie_titles = dict(zip(movies['movieId'], movies['title']))\n",
+    "\n",
+    "movie_id = 2\n",
+    "\n",
+    "similar_movies = find_similar_movies(movie_id, X, metric='cosine', k=10)\n",
+    "movie_title = movie_titles[movie_id]\n",
+    "\n",
+    "print(f\"Because you watched {movie_title}:\")\n",
+    "for i in similar_movies:\n",
+    "    print(movie_titles[i])"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "The results above show the 10 most similar movies to Jumanji. Most movies in this list are family movies from the 1990s, which seems pretty reasonable. Note that these recommendations are based solely on user-item ratings. Movie features such as genres are not used in this approach."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "You can also play around with the kNN distance metric and see what results you would get if you use \"manhattan\" or \"euclidean\" instead of \"cosine\"."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 151,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Because you watched Jumanji (1995):\n",
+      "Santa Clause, The (1994)\n",
+      "Congo (1995)\n",
+      "Casper (1995)\n",
+      "Judge Dredd (1995)\n",
+      "Free Willy (1993)\n",
+      "Nick of Time (1995)\n",
+      "Last Action Hero (1993)\n",
+      "Beverly Hills Cop III (1994)\n",
+      "City Slickers II: The Legend of Curly's Gold (1994)\n",
+      "Milk Money (1994)\n"
+     ]
+    }
+   ],
+   "source": [
+    "movie_id = 2\n",
+    "\n",
+    "similar_movies = find_similar_movies(movie_id, X, metric='euclidean', k=10)\n",
+    "movie_title = movie_titles[movie_id]\n",
+    "\n",
+    "print(f\"Because you watched {movie_title}:\")\n",
+    "for i in similar_movies:\n",
+    "    print(movie_titles[i])"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### Step 6: Handling the cold-start problem\n",
+    "\n",
+    "Collaborative filtering relies solely on user-item interactions within the utility matrix. The issue with this approach is that brand new users or items with no iteractions get excluded from the recommendation system. This is called the **cold start problem**. Content-based filtering is a way to handle this problem by generating recommendations based on user and item features.\n",
+    "\n",
+    "First, we need to convert the `genres` column into binary features. Each genre will have its own column in the dataframe, and will be populated with 0 or 1."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 127,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "genres = set(g for G in movies['genres'] for g in G)\n",
+    "\n",
+    "for g in genres:\n",
+    "    movies[g] = movies.genres.transform(lambda x: int(g in x))\n",
+    "    \n",
+    "movie_genres = movies.drop(columns=['movieId', 'title','genres'])"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 152,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>Children</th>\n",
+       "      <th>Drama</th>\n",
+       "      <th>Thriller</th>\n",
+       "      <th>Animation</th>\n",
+       "      <th>Sci-Fi</th>\n",
+       "      <th>Fantasy</th>\n",
+       "      <th>Horror</th>\n",
+       "      <th>Documentary</th>\n",
+       "      <th>Romance</th>\n",
+       "      <th>Comedy</th>\n",
+       "      <th>Crime</th>\n",
+       "      <th>Film-Noir</th>\n",
+       "      <th>Adventure</th>\n",
+       "      <th>Mystery</th>\n",
+       "      <th>Musical</th>\n",
+       "      <th>Action</th>\n",
+       "      <th>Western</th>\n",
+       "      <th>(no genres listed)</th>\n",
+       "      <th>IMAX</th>\n",
+       "      <th>War</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>0</th>\n",
+       "      <td>1</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>1</td>\n",
+       "      <td>0</td>\n",
+       "      <td>1</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>1</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>1</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>1</th>\n",
+       "      <td>1</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>1</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>1</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>2</th>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>1</td>\n",
+       "      <td>1</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>3</th>\n",
+       "      <td>0</td>\n",
+       "      <td>1</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>1</td>\n",
+       "      <td>1</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>4</th>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>1</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "   Children  Drama  Thriller  Animation  Sci-Fi  Fantasy  Horror  Documentary  \\\n",
+       "0         1      0         0          1       0        1       0            0   \n",
+       "1         1      0         0          0       0        1       0            0   \n",
+       "2         0      0         0          0       0        0       0            0   \n",
+       "3         0      1         0          0       0        0       0            0   \n",
+       "4         0      0         0          0       0        0       0            0   \n",
+       "\n",
+       "   Romance  Comedy  Crime  Film-Noir  Adventure  Mystery  Musical  Action  \\\n",
+       "0        0       1      0          0          1        0        0       0   \n",
+       "1        0       0      0          0          1        0        0       0   \n",
+       "2        1       1      0          0          0        0        0       0   \n",
+       "3        1       1      0          0          0        0        0       0   \n",
+       "4        0       1      0          0          0        0        0       0   \n",
+       "\n",
+       "   Western  (no genres listed)  IMAX  War  \n",
+       "0        0                   0     0    0  \n",
+       "1        0                   0     0    0  \n",
+       "2        0                   0     0    0  \n",
+       "3        0                   0     0    0  \n",
+       "4        0                   0     0    0  "
+      ]
+     },
+     "execution_count": 152,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "movie_genres.head()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 154,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Dimensions of our genres cosine similarity matrix: (9125, 9125)\n"
+     ]
+    }
+   ],
+   "source": [
+    "from sklearn.metrics.pairwise import cosine_similarity\n",
+    "\n",
+    "cosine_sim = cosine_similarity(movie_genres, movie_genres)\n",
+    "print(f\"Dimensions of our genres cosine similarity matrix: {cosine_sim.shape}\")"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "The dimensions of our cosine similarity matrix are $M \\times M$ where $M$ represents the total number of movies."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 156,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Recommendations for Jumanji (1995):\n"
+     ]
+    },
+    {
+     "data": {
+      "text/plain": [
+       "56                     Indian in the Cupboard, The (1995)\n",
+       "114                     NeverEnding Story III, The (1994)\n",
+       "813                       Escape to Witch Mountain (1975)\n",
+       "1604            Darby O'Gill and the Little People (1959)\n",
+       "1653                                  Return to Oz (1985)\n",
+       "1716                        NeverEnding Story, The (1984)\n",
+       "1717    NeverEnding Story II: The Next Chapter, The (1...\n",
+       "1909                        Santa Claus: The Movie (1985)\n",
+       "3812    Harry Potter and the Sorcerer's Stone (a.k.a. ...\n",
+       "6307    Chronicles of Narnia: The Lion, the Witch and ...\n",
+       "Name: title, dtype: object"
+      ]
+     },
+     "execution_count": 156,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "movie_indices = dict(zip(movies['title'], list(movies.index)))\n",
+    "title = movies['title'][1]\n",
+    "n_recommendations = 10\n",
+    "\n",
+    "idx = movie_indices[title]\n",
+    "sim_scores = list(enumerate(cosine_sim[idx]))\n",
+    "sim_scores = sorted(sim_scores, key=lambda x: x[1], reverse=True)\n",
+    "sim_scores = sim_scores[1:(n_recommendations+1)]\n",
+    "similar_movies = [i[0] for i in sim_scores]\n",
+    "\n",
+    "print(f\"Recommendations for {title}:\")\n",
+    "movies['title'].iloc[similar_movies]"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### Step 7: Dimensionality Reduction with Matrix Factorization (advanced)"
    ]
   },
   {
