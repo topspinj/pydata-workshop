@@ -25,6 +25,7 @@ Dependencies
    :maxdepth: 2
    :caption: Contents:
 
+   tutorial.ipynb
 
 
 Indices and tables

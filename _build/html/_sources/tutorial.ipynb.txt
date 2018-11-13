@@ -602,7 +602,9 @@
    "source": [
     "`csr_matrix.nnz` gets the count of stored values in our sparse matrix. The rest of our cells are empty cells.\n",
     "\n",
-    "The **cold start problem** is when there are new users and movies in our matrix that do not have any ratings. In our Movielens dataset, all users and movies have at least one rating."
+    "The **cold start problem** is when there are new users and movies in our matrix that do not hav\n",
+    "\n",
+    "It's also very important to check if there are any users or items in our matrix that do not have any ratings."
    ]
   },
   {
