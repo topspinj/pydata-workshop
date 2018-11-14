@@ -1566,7 +1566,7 @@
    "cell_type": "markdown",
    "metadata": {},
    "source": [
-    "Let's look at userId 1's recommendations."
+    "Let's look at userId 100's recommendations. In the table below, we can see which movies that rated highly:"
    ]
   },
   {
