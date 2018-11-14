@@ -66,3 +66,19 @@ def find_similar_movies(movie_id, X, k, metric='cosine', show_distance=False):
         neighbour_ids.append(movie_inv_mapper[n])
     neighbour_ids.pop(0)
     return neighbour_ids
+
+def get_mean_user_matrix(X):
+    """
+    Create matrix with rows containing user's mean ratings.
+    Args:
+        X: scipy.sparse.csr_matrix of shape (n_users, n_movies)
+        populated with original user-movie ratings
+    Returns:
+        a scipy.sparse.csr_matrix of shape (n_users, n_movies)
+        populated with a user's mean rating for each row.
+    """
+    sum_ratings_per_user = X.sum(axis=1)
+    n_ratings_per_user = X.getnnz(axis=1)
+    mean_rating_per_user = sum_ratings_per_user/n_ratings_per_user.reshape(-1,1)
+    X_mean_user = np.tile(mean_rating_per_user, (1, X.shape[1]))
+    return csr_matrix(X_mean_user)

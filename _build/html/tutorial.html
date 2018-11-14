@@ -90,6 +90,7 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#Step-4:-Data-Pre-processing">Step 4: Data Pre-processing</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#Evaluating-sparsity">Evaluating sparsity</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Normalizing-our-data">Normalizing our data</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#Step-5:-Item-item-Recommendations-with-k-Nearest-Neighbors">Step 5: Item-item Recommendations with k-Nearest Neighbors</a></li>
@@ -362,7 +363,7 @@ to represent our data. We will visualize our data with
 </ul>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [110]:
+<span></span>In [4]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -391,7 +392,7 @@ repository:</p>
 </ul>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [111]:
+<span></span>In [5]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -401,7 +402,7 @@ repository:</p>
 </div>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [112]:
+<span></span>In [6]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -414,7 +415,7 @@ repository:</p>
 <h2>Step 3: Exploratory Data Analysis<a class="headerlink" href="#Step-3:-Exploratory-Data-Analysis" title="Permalink to this headline">¶</a></h2>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [113]:
+<span></span>In [7]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -444,7 +445,7 @@ Average number of ratings per movie: 11.03
 </div>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [114]:
+<span></span>In [8]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -461,12 +462,34 @@ Average number of ratings per movie: 11.03
 <img alt="_images/tutorial_9_0.png" src="_images/tutorial_9_0.png" />
 </div>
 </div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;Global mean rating: {round(ratings[&#39;rating&#39;].mean(),2)}.&quot;</span><span class="p">)</span>
+
+<span class="n">mean_ratings</span> <span class="o">=</span> <span class="n">ratings</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;userId&#39;</span><span class="p">)[</span><span class="s1">&#39;rating&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;Mean rating per user: {round(mean_ratings.mean(),2)}.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Global mean rating: 3.54.
+Mean rating per user: 3.66.
+</pre></div></div>
+</div>
 <div class="section" id="Best-vs.&nbsp;Worst-Movie">
 <h3>Best vs.&nbsp;Worst Movie<a class="headerlink" href="#Best-vs. Worst-Movie" title="Permalink to this headline">¶</a></h3>
 <p>Which movie has the lowest and highest average rating?</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [115]:
+<span></span>In [10]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -479,7 +502,7 @@ Average number of ratings per movie: 11.03
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>Out[115]:
+<span></span>Out[10]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -520,7 +543,7 @@ Average number of ratings per movie: 11.03
 <p><code class="docutils literal notranslate"><span class="pre">Santa</span> <span class="pre">with</span> <span class="pre">Muscles</span></code> has the lowest average rating.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [116]:
+<span></span>In [11]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -531,7 +554,7 @@ Average number of ratings per movie: 11.03
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>Out[116]:
+<span></span>Out[11]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -584,7 +607,7 @@ defintion, C represents “the typical data set size”. Let’s make
 <span class="math notranslate nohighlight">\(C\)</span> be the average number of ratings for a given movie.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [117]:
+<span></span>In [12]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -595,7 +618,7 @@ defintion, C represents “the typical data set size”. Let’s make
 </div>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [118]:
+<span></span>In [13]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -614,7 +637,7 @@ defintion, C represents “the typical data set size”. Let’s make
 </div>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [119]:
+<span></span>In [14]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -625,7 +648,7 @@ defintion, C represents “the typical data set size”. Let’s make
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>Out[119]:
+<span></span>Out[14]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -705,7 +728,7 @@ movies. This result makes much more sense since these movies are
 critically acclaimed films.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [120]:
+<span></span>In [15]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -715,7 +738,7 @@ critically acclaimed films.</p>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>Out[120]:
+<span></span>Out[15]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -805,7 +828,7 @@ year from each title string and create a new column for it.</li>
 </ul>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [121]:
+<span></span>In [16]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -816,7 +839,7 @@ year from each title string and create a new column for it.</li>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>Out[121]:
+<span></span>Out[16]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -881,7 +904,7 @@ year from each title string and create a new column for it.</li>
 <p><strong>How many movie genres are there?</strong></p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [122]:
+<span></span>In [17]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -905,7 +928,7 @@ There are 20 genres.
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>Out[122]:
+<span></span>Out[17]:
 </pre></div>
 </div>
 <div class="output_area highlight-none notranslate"><div class="highlight"><pre>
@@ -934,7 +957,7 @@ There are 20 genres.
 </div>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [123]:
+<span></span>In [18]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -978,7 +1001,7 @@ utility matrix corresponds to which user/movie id.</p>
 which stores the data sparsely.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [132]:
+<span></span>In [19]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -998,19 +1021,19 @@ which stores the data sparsely.</p>
 <span class="sd">        movie_mapper: dict that maps movie id&#39;s to movie indices</span>
 <span class="sd">        movie_inv_mapper: dict that maps movie indices to movie id&#39;s</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">N</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;userId&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span>
-    <span class="n">M</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;movieId&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span>
+    <span class="n">M</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;userId&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span>
+    <span class="n">N</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;movieId&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span>
 
-    <span class="n">user_mapper</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;userId&quot;</span><span class="p">]),</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">))))</span>
-    <span class="n">movie_mapper</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;movieId&quot;</span><span class="p">]),</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">M</span><span class="p">))))</span>
+    <span class="n">user_mapper</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;userId&quot;</span><span class="p">]),</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">M</span><span class="p">))))</span>
+    <span class="n">movie_mapper</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;movieId&quot;</span><span class="p">]),</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">))))</span>
 
-    <span class="n">user_inv_mapper</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">)),</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;userId&quot;</span><span class="p">])))</span>
-    <span class="n">movie_inv_mapper</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">M</span><span class="p">)),</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;movieId&quot;</span><span class="p">])))</span>
+    <span class="n">user_inv_mapper</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">M</span><span class="p">)),</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;userId&quot;</span><span class="p">])))</span>
+    <span class="n">movie_inv_mapper</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">)),</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;movieId&quot;</span><span class="p">])))</span>
 
     <span class="n">user_index</span> <span class="o">=</span> <span class="p">[</span><span class="n">user_mapper</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;userId&#39;</span><span class="p">]]</span>
     <span class="n">item_index</span> <span class="o">=</span> <span class="p">[</span><span class="n">movie_mapper</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;movieId&#39;</span><span class="p">]]</span>
 
-    <span class="n">X</span> <span class="o">=</span> <span class="n">csr_matrix</span><span class="p">((</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;rating&quot;</span><span class="p">],</span> <span class="p">(</span><span class="n">item_index</span><span class="p">,</span> <span class="n">user_index</span><span class="p">)),</span> <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="n">N</span><span class="p">))</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">csr_matrix</span><span class="p">((</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;rating&quot;</span><span class="p">],</span> <span class="p">(</span><span class="n">user_index</span><span class="p">,</span><span class="n">item_index</span><span class="p">)),</span> <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">M</span><span class="p">,</span><span class="n">N</span><span class="p">))</span>
 
     <span class="k">return</span> <span class="n">X</span><span class="p">,</span> <span class="n">user_mapper</span><span class="p">,</span> <span class="n">movie_mapper</span><span class="p">,</span> <span class="n">user_inv_mapper</span><span class="p">,</span> <span class="n">movie_inv_mapper</span>
 
@@ -1025,7 +1048,7 @@ total number of elements. The number of stored (non-empty) elements in
 our matrix is equivalent to the number of ratings in our dataset.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [125]:
+<span></span>In [20]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1050,6 +1073,170 @@ rest of our cells are empty.</p>
 matrix that do not have any ratings. In our Movielens dataset, all users
 and movies have at least one rating but in general, it’s useful to check
 which users and movies have few interactions.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [21]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">n_ratings_per_user</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">getnnz</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;Most active user rated {n_ratings_per_user.max()} movies.&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;Least active user rated {n_ratings_per_user.min()} movies.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Most active user rated 2391 movies.
+Least active user rated 20 movies.
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [22]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">n_ratings_per_movie</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">getnnz</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;Most rated movie has {n_ratings_per_movie.max()} ratings.&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;Least rated movie has {n_ratings_per_movie.min()} ratings.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Most rated movie has 341 ratings.
+Least rated movie has 1 ratings.
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [23]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">kdeplot</span><span class="p">(</span><span class="n">n_ratings_per_user</span><span class="p">,</span> <span class="n">shade</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Number of Ratings Per User&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;number of ratings per user&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;density&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">kdeplot</span><span class="p">(</span><span class="n">n_ratings_per_movie</span><span class="p">,</span> <span class="n">shade</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Number of Ratings Per Movie&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;number of ratings per movie&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;density&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/tutorial_35_0.png" src="_images/tutorial_35_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="Normalizing-our-data">
+<h3>Normalizing our data<a class="headerlink" href="#Normalizing-our-data" title="Permalink to this headline">¶</a></h3>
+<p>User-item bias is defined as: <span class="math notranslate nohighlight">\(b_{ui} = \mu + b_{u} + b_{i}\)</span></p>
+<p>We will perform mean normalization by subtracting <span class="math notranslate nohighlight">\(b_{i}\)</span> from
+each movie’s rating.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [36]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">sum_ratings_per_movie</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">mean_rating_per_movie</span> <span class="o">=</span> <span class="n">sum_ratings_per_movie</span><span class="o">/</span><span class="n">n_ratings_per_movie</span>
+</pre></div>
+</div>
+</div>
+<p>Now that we have the mean rating for each movie, we are going to
+subtract this from our utility matrix. In order to do this, we need to
+expand our 1D <code class="docutils literal notranslate"><span class="pre">mean_rating_per_movie</span></code> array into a matrix with the
+same shape as our utility matrix <code class="docutils literal notranslate"><span class="pre">(n_users,</span> <span class="pre">n_movies)</span></code>. Numpy’s
+<code class="docutils literal notranslate"><span class="pre">tile</span></code> method is useful for this task.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [49]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">X_mean_movie</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">tile</span><span class="p">(</span><span class="n">mean_rating_per_movie</span><span class="p">,</span> <span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="mi">1</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [67]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">X_mean_movie</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>Out[67]:
+</pre></div>
+</div>
+<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>(671, 9066)
+</pre></div>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">X_mean_movie</span></code> is a matrix of shape (n_users, n_movies) in which each
+column is populated with a given movie’s mean rating.</p>
+<p>We can easily normalize our X matrix by subtracting <code class="docutils literal notranslate"><span class="pre">X_mean_movie</span></code>
+from original <code class="docutils literal notranslate"><span class="pre">X</span></code>.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [111]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">X_norm</span> <span class="o">=</span> <span class="n">X</span> <span class="o">-</span> <span class="n">csr_matrix</span><span class="p">(</span><span class="n">X_mean_movie</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>As expected, <code class="docutils literal notranslate"><span class="pre">X_norm</span></code>’s values are different from <code class="docutils literal notranslate"><span class="pre">X</span></code>s. Cells
+that are empty in the original matrix are now replaced with negative
+values representing the mean rating of a given movie.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [119]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Original X:&quot;</span><span class="p">,</span> <span class="n">X</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">todense</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Normalized X:&quot;</span><span class="p">,</span> <span class="n">X_norm</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">todense</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Original X: [[0. 0. 0. ... 0. 0. 0.]]
+Normalized X: [[-3.87246964 -3.40186916 -3.16101695 ... -5.         -3.
+  -5.        ]]
+</pre></div></div>
+</div>
 </div>
 </div>
 <div class="section" id="Step-5:-Item-item-Recommendations-with-k-Nearest-Neighbors">
@@ -1058,13 +1245,13 @@ which users and movies have few interactions.</p>
 user engagement vectors for movie <span class="math notranslate nohighlight">\(i\)</span>.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [143]:
+<span></span>In [120]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="k">import</span> <span class="n">NearestNeighbors</span>
 
-<span class="k">def</span> <span class="nf">find_similar_movies</span><span class="p">(</span><span class="n">movie_id</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">metric</span><span class="o">=</span><span class="s1">&#39;cosine&#39;</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">find_similar_movies</span><span class="p">(</span><span class="n">movie_id</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">movie_mapper</span><span class="p">,</span> <span class="n">movie_inv_mapper</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">metric</span><span class="o">=</span><span class="s1">&#39;cosine&#39;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Finds k-nearest neighbours for a given movie id.</span>
 
@@ -1079,12 +1266,10 @@ user engagement vectors for movie <span class="math notranslate nohighlight">\(i
     <span class="n">neighbour_ids</span> <span class="o">=</span> <span class="p">[]</span>
 
     <span class="n">movie_ind</span> <span class="o">=</span> <span class="n">movie_mapper</span><span class="p">[</span><span class="n">movie_id</span><span class="p">]</span>
-    <span class="n">movie_vec</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">movie_ind</span><span class="p">]</span>
-    <span class="n">k</span><span class="o">+=</span><span class="mi">1</span>
-    <span class="n">kNN</span> <span class="o">=</span> <span class="n">NearestNeighbors</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="n">k</span><span class="p">,</span> <span class="n">algorithm</span><span class="o">=</span><span class="s2">&quot;brute&quot;</span><span class="p">,</span> <span class="n">metric</span><span class="o">=</span><span class="n">metric</span><span class="p">)</span>
-    <span class="n">kNN</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
-    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">movie_vec</span><span class="p">,</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)):</span>
-        <span class="n">movie_vec</span> <span class="o">=</span> <span class="n">movie_vec</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">movie_vec</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">T</span><span class="p">[</span><span class="n">movie_ind</span><span class="p">]</span>
+    <span class="c1"># use k+1 since kNN output includes the movieId of interest</span>
+    <span class="n">kNN</span> <span class="o">=</span> <span class="n">NearestNeighbors</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">algorithm</span><span class="o">=</span><span class="s2">&quot;brute&quot;</span><span class="p">,</span> <span class="n">metric</span><span class="o">=</span><span class="n">metric</span><span class="p">)</span>
+    <span class="n">kNN</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
     <span class="n">neighbour</span> <span class="o">=</span> <span class="n">kNN</span><span class="o">.</span><span class="n">kneighbors</span><span class="p">(</span><span class="n">movie_vec</span><span class="p">,</span> <span class="n">return_distance</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">k</span><span class="p">):</span>
         <span class="n">n</span> <span class="o">=</span> <span class="n">neighbour</span><span class="o">.</span><span class="n">item</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
@@ -1101,22 +1286,22 @@ of interest.</p>
 that maps movieId to title so that our results are interpretable.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [148]:
+<span></span>In [121]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">similar_movies</span> <span class="o">=</span> <span class="n">find_similar_movies</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span></span><span class="n">similar_movies</span> <span class="o">=</span> <span class="n">find_similar_movies</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">X_norm</span><span class="p">,</span> <span class="n">movie_mapper</span><span class="p">,</span> <span class="n">movie_inv_mapper</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 <span class="n">similar_movies</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>Out[148]:
+<span></span>Out[121]:
 </pre></div>
 </div>
 <div class="output_area highlight-none notranslate"><div class="highlight"><pre>
-<span></span>[500, 364, 317, 367, 595, 588, 344, 587, 480, 377]
+<span></span>[317, 158, 89, 455, 8965, 5108, 7324, 8, 1661]
 </pre></div>
 </div>
 </div>
@@ -1126,7 +1311,7 @@ titles so that we can interpret our results. To make things easier, we
 will create a dictionary that maps <code class="docutils literal notranslate"><span class="pre">movieId</span></code> to <code class="docutils literal notranslate"><span class="pre">title</span></code>.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [149]:
+<span></span>In [122]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1134,7 +1319,7 @@ will create a dictionary that maps <code class="docutils literal notranslate"><s
 
 <span class="n">movie_id</span> <span class="o">=</span> <span class="mi">2</span>
 
-<span class="n">similar_movies</span> <span class="o">=</span> <span class="n">find_similar_movies</span><span class="p">(</span><span class="n">movie_id</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">metric</span><span class="o">=</span><span class="s1">&#39;cosine&#39;</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">similar_movies</span> <span class="o">=</span> <span class="n">find_similar_movies</span><span class="p">(</span><span class="n">movie_id</span><span class="p">,</span> <span class="n">X_norm</span><span class="p">,</span> <span class="n">movie_mapper</span><span class="p">,</span> <span class="n">movie_inv_mapper</span><span class="p">,</span> <span class="n">metric</span><span class="o">=</span><span class="s1">&#39;cosine&#39;</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 <span class="n">movie_title</span> <span class="o">=</span> <span class="n">movie_titles</span><span class="p">[</span><span class="n">movie_id</span><span class="p">]</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;Because you watched </span><span class="si">{movie_title}</span><span class="s2">:&quot;</span><span class="p">)</span>
@@ -1149,16 +1334,15 @@ will create a dictionary that maps <code class="docutils literal notranslate"><s
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 Because you watched Jumanji (1995):
-Mrs. Doubtfire (1993)
-Lion King, The (1994)
 Santa Clause, The (1994)
-Mask, The (1994)
-Beauty and the Beast (1991)
-Aladdin (1992)
-Ace Ventura: Pet Detective (1994)
-Ghost (1990)
-Jurassic Park (1993)
-Speed (1994)
+Casper (1995)
+Nick of Time (1995)
+Free Willy (1993)
+Polar Express, The (2004)
+John Q (2002)
+Hidalgo (2004)
+Tom and Huck (1995)
+Switchback (1997)
 </pre></div></div>
 </div>
 <p>The results above show the 10 most similar movies to Jumanji. Most
@@ -1171,13 +1355,13 @@ results you would get if you use “manhattan” or “euclidean” instead of
 “cosine”.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [151]:
+<span></span>In [123]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="n">movie_id</span> <span class="o">=</span> <span class="mi">2</span>
 
-<span class="n">similar_movies</span> <span class="o">=</span> <span class="n">find_similar_movies</span><span class="p">(</span><span class="n">movie_id</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">metric</span><span class="o">=</span><span class="s1">&#39;euclidean&#39;</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">similar_movies</span> <span class="o">=</span> <span class="n">find_similar_movies</span><span class="p">(</span><span class="n">movie_id</span><span class="p">,</span> <span class="n">X_norm</span><span class="p">,</span> <span class="n">movie_mapper</span><span class="p">,</span> <span class="n">movie_inv_mapper</span><span class="p">,</span> <span class="n">metric</span><span class="o">=</span><span class="s1">&#39;euclidean&#39;</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 <span class="n">movie_title</span> <span class="o">=</span> <span class="n">movie_titles</span><span class="p">[</span><span class="n">movie_id</span><span class="p">]</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;Because you watched </span><span class="si">{movie_title}</span><span class="s2">:&quot;</span><span class="p">)</span>
@@ -1193,15 +1377,14 @@ results you would get if you use “manhattan” or “euclidean” instead of
 <div class="highlight"><pre>
 Because you watched Jumanji (1995):
 Santa Clause, The (1994)
-Congo (1995)
 Casper (1995)
-Judge Dredd (1995)
 Free Willy (1993)
-Nick of Time (1995)
-Last Action Hero (1993)
-Beverly Hills Cop III (1994)
-City Slickers II: The Legend of Curly&#39;s Gold (1994)
+Polar Express, The (2004)
 Milk Money (1994)
+Herbie Goes Bananas (1980)
+Surviving the Game (1994)
+Cosi (1996)
+Graveyard Shift (Stephen King&#39;s Graveyard Shift) (1990)
 </pre></div></div>
 </div>
 </div>
@@ -1216,9 +1399,28 @@ based on user and item features.</p>
 <p>First, we need to convert the <code class="docutils literal notranslate"><span class="pre">genres</span></code> column into binary features.
 Each genre will have its own column in the dataframe, and will be
 populated with 0 or 1.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [85]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">n_movies</span> <span class="o">=</span> <span class="n">movies</span><span class="p">[</span><span class="s1">&#39;movieId&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;There are </span><span class="si">{n_movies}</span><span class="s2"> unique movies in our movies dataset.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+There are 9125 unique movies in our movies dataset.
+</pre></div></div>
+</div>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [127]:
+<span></span>In [86]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1233,7 +1435,7 @@ populated with 0 or 1.</p>
 </div>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [152]:
+<span></span>In [87]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1243,7 +1445,7 @@ populated with 0 or 1.</p>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>Out[152]:
+<span></span>Out[87]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -1265,46 +1467,46 @@ populated with 0 or 1.</p>
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>Children</th>
       <th>Drama</th>
-      <th>Thriller</th>
-      <th>Animation</th>
-      <th>Sci-Fi</th>
-      <th>Fantasy</th>
-      <th>Horror</th>
-      <th>Documentary</th>
-      <th>Romance</th>
-      <th>Comedy</th>
-      <th>Crime</th>
-      <th>Film-Noir</th>
-      <th>Adventure</th>
-      <th>Mystery</th>
-      <th>Musical</th>
-      <th>Action</th>
       <th>Western</th>
-      <th>(no genres listed)</th>
+      <th>Mystery</th>
       <th>IMAX</th>
+      <th>Thriller</th>
+      <th>Fantasy</th>
+      <th>Animation</th>
+      <th>Crime</th>
+      <th>Comedy</th>
+      <th>Adventure</th>
+      <th>Film-Noir</th>
+      <th>(no genres listed)</th>
       <th>War</th>
+      <th>Romance</th>
+      <th>Children</th>
+      <th>Action</th>
+      <th>Musical</th>
+      <th>Horror</th>
+      <th>Sci-Fi</th>
+      <th>Documentary</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>0</th>
-      <td>1</td>
       <td>0</td>
       <td>0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>1</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
       <td>1</td>
+      <td>1</td>
       <td>0</td>
-      <td>0</td>
+      <td>1</td>
       <td>1</td>
       <td>0</td>
       <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
@@ -1313,13 +1515,6 @@ populated with 0 or 1.</p>
     </tr>
     <tr>
       <th>1</th>
-      <td>1</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
@@ -1328,6 +1523,13 @@ populated with 0 or 1.</p>
       <td>1</td>
       <td>0</td>
       <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
@@ -1345,11 +1547,11 @@ populated with 0 or 1.</p>
       <td>0</td>
       <td>0</td>
       <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
       <td>1</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
@@ -1359,7 +1561,6 @@ populated with 0 or 1.</p>
     </tr>
     <tr>
       <th>3</th>
-      <td>0</td>
       <td>1</td>
       <td>0</td>
       <td>0</td>
@@ -1367,12 +1568,13 @@ populated with 0 or 1.</p>
       <td>0</td>
       <td>0</td>
       <td>0</td>
+      <td>0</td>
       <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
       <td>1</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
@@ -1390,8 +1592,8 @@ populated with 0 or 1.</p>
       <td>0</td>
       <td>0</td>
       <td>0</td>
-      <td>0</td>
       <td>1</td>
+      <td>0</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
@@ -1409,7 +1611,7 @@ populated with 0 or 1.</p>
 </div>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [154]:
+<span></span>In [88]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1432,15 +1634,41 @@ Dimensions of our genres cosine similarity matrix: (9125, 9125)
 where <span class="math notranslate nohighlight">\(M\)</span> represents the total number of movies.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [156]:
+<span></span>In [89]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">movie_indices</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">movies</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">],</span> <span class="nb">list</span><span class="p">(</span><span class="n">movies</span><span class="o">.</span><span class="n">index</span><span class="p">)))</span>
-<span class="n">title</span> <span class="o">=</span> <span class="n">movies</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+<span></span><span class="k">def</span> <span class="nf">movie_finder</span><span class="p">(</span><span class="n">title</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">movies</span><span class="p">[</span><span class="n">movies</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="n">title</span><span class="p">)][</span><span class="s1">&#39;title&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+
+<span class="n">movie_finder</span><span class="p">(</span><span class="s1">&#39;Toy Story&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>Out[89]:
+</pre></div>
+</div>
+<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>[&#39;Toy Story (1995)&#39;,
+ &#39;Toy Story 2 (1999)&#39;,
+ &#39;Toy Story 3 (2010)&#39;,
+ &#39;Toy Story of Terror (2013)&#39;]
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [90]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">movie_idx</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">movies</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">],</span> <span class="nb">list</span><span class="p">(</span><span class="n">movies</span><span class="o">.</span><span class="n">index</span><span class="p">)))</span>
+<span class="n">title</span> <span class="o">=</span> <span class="n">movie_finder</span><span class="p">(</span><span class="s1">&#39;Toy Story&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
 <span class="n">n_recommendations</span> <span class="o">=</span> <span class="mi">10</span>
 
-<span class="n">idx</span> <span class="o">=</span> <span class="n">movie_indices</span><span class="p">[</span><span class="n">title</span><span class="p">]</span>
+<span class="n">idx</span> <span class="o">=</span> <span class="n">movie_idx</span><span class="p">[</span><span class="n">title</span><span class="p">]</span>
 <span class="n">sim_scores</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">enumerate</span><span class="p">(</span><span class="n">cosine_sim</span><span class="p">[</span><span class="n">idx</span><span class="p">]))</span>
 <span class="n">sim_scores</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">sim_scores</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">sim_scores</span> <span class="o">=</span> <span class="n">sim_scores</span><span class="p">[</span><span class="mi">1</span><span class="p">:(</span><span class="n">n_recommendations</span><span class="o">+</span><span class="mi">1</span><span class="p">)]</span>
@@ -1456,29 +1684,33 @@ where <span class="math notranslate nohighlight">\(M\)</span> represents the tot
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-Recommendations for Jumanji (1995):
+Recommendations for Toy Story (1995):
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>Out[156]:
+<span></span>Out[90]:
 </pre></div>
 </div>
 <div class="output_area highlight-none notranslate"><div class="highlight"><pre>
-<span></span>56                     Indian in the Cupboard, The (1995)
-114                     NeverEnding Story III, The (1994)
-813                       Escape to Witch Mountain (1975)
-1604            Darby O&#39;Gill and the Little People (1959)
-1653                                  Return to Oz (1985)
-1716                        NeverEnding Story, The (1984)
-1717    NeverEnding Story II: The Next Chapter, The (1...
-1909                        Santa Claus: The Movie (1985)
-3812    Harry Potter and the Sorcerer&#39;s Stone (a.k.a. ...
-6307    Chronicles of Narnia: The Lion, the Witch and ...
+<span></span>1815                                          Antz (1998)
+2506                                   Toy Story 2 (1999)
+3003       Adventures of Rocky and Bullwinkle, The (2000)
+3217                     Emperor&#39;s New Groove, The (2000)
+3805                                Monsters, Inc. (2001)
+6705                               Shrek the Third (2007)
+7146                       Tale of Despereaux, The (2008)
+7945    Asterix and the Vikings (Astérix et les Viking...
+8366                                         Turbo (2013)
+8676                                Boxtrolls, The (2014)
 Name: title, dtype: object
 </pre></div>
 </div>
 </div>
+<p>With this approach, we are assuming that two movies are “similar” if
+they have similar genres. These “similar movie” recommendations are
+based solely on the metadata from our movies dataset. Feel free to test
+out different movies.</p>
 </div>
 <div class="section" id="Step-7:-Dimensionality-Reduction-with-Matrix-Factorization-(advanced)">
 <h2>Step 7: Dimensionality Reduction with Matrix Factorization (advanced)<a class="headerlink" href="#Step-7:-Dimensionality-Reduction-with-Matrix-Factorization-(advanced)" title="Permalink to this headline">¶</a></h2>
