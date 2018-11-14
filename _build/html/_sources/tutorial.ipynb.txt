@@ -1021,7 +1021,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 120,
+   "execution_count": 139,
    "metadata": {},
    "outputs": [],
    "source": [
@@ -1043,6 +1043,8 @@
     "    \n",
     "    movie_ind = movie_mapper[movie_id]\n",
     "    movie_vec = X.T[movie_ind]\n",
+    "    if isinstance(movie_vec, (np.ndarray)):\n",
+    "        movie_vec = movie_vec.reshape(1,-1)\n",
     "    # use k+1 since kNN output includes the movieId of interest\n",
     "    kNN = NearestNeighbors(n_neighbors=k+1, algorithm=\"brute\", metric=metric)\n",
     "    kNN.fit(X.T)\n",
@@ -1533,10 +1535,216 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 124,
    "metadata": {},
    "outputs": [],
-   "source": []
+   "source": [
+    "from sklearn.decomposition import TruncatedSVD\n",
+    "\n",
+    "svd = TruncatedSVD(n_components=5, n_iter=7, random_state=42)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 165,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "Z = svd.fit_transform(X)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 179,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "new_X = svd.inverse_transform(Z)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Let's look at userId 1's recommendations."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 224,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>userId</th>\n",
+       "      <th>movieId</th>\n",
+       "      <th>rating</th>\n",
+       "      <th>timestamp</th>\n",
+       "      <th>title</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>3</th>\n",
+       "      <td>100</td>\n",
+       "      <td>32</td>\n",
+       "      <td>5.0</td>\n",
+       "      <td>854193977</td>\n",
+       "      <td>Twelve Monkeys (a.k.a. 12 Monkeys) (1995)</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>7</th>\n",
+       "      <td>100</td>\n",
+       "      <td>1073</td>\n",
+       "      <td>5.0</td>\n",
+       "      <td>854194056</td>\n",
+       "      <td>Willy Wonka &amp; the Chocolate Factory (1971)</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>0</th>\n",
+       "      <td>100</td>\n",
+       "      <td>1</td>\n",
+       "      <td>4.0</td>\n",
+       "      <td>854193977</td>\n",
+       "      <td>Toy Story (1995)</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>1</th>\n",
+       "      <td>100</td>\n",
+       "      <td>3</td>\n",
+       "      <td>4.0</td>\n",
+       "      <td>854194024</td>\n",
+       "      <td>Grumpier Old Men (1995)</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>2</th>\n",
+       "      <td>100</td>\n",
+       "      <td>25</td>\n",
+       "      <td>4.0</td>\n",
+       "      <td>854193977</td>\n",
+       "      <td>Leaving Las Vegas (1995)</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>4</th>\n",
+       "      <td>100</td>\n",
+       "      <td>608</td>\n",
+       "      <td>4.0</td>\n",
+       "      <td>854194024</td>\n",
+       "      <td>Fargo (1996)</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>5</th>\n",
+       "      <td>100</td>\n",
+       "      <td>745</td>\n",
+       "      <td>4.0</td>\n",
+       "      <td>854194208</td>\n",
+       "      <td>Wallace &amp; Gromit: A Close Shave (1995)</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>6</th>\n",
+       "      <td>100</td>\n",
+       "      <td>802</td>\n",
+       "      <td>4.0</td>\n",
+       "      <td>854194111</td>\n",
+       "      <td>Phenomenon (1996)</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>8</th>\n",
+       "      <td>100</td>\n",
+       "      <td>1356</td>\n",
+       "      <td>4.0</td>\n",
+       "      <td>854194086</td>\n",
+       "      <td>Star Trek: First Contact (1996)</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "   userId  movieId  rating  timestamp  \\\n",
+       "3     100       32     5.0  854193977   \n",
+       "7     100     1073     5.0  854194056   \n",
+       "0     100        1     4.0  854193977   \n",
+       "1     100        3     4.0  854194024   \n",
+       "2     100       25     4.0  854193977   \n",
+       "4     100      608     4.0  854194024   \n",
+       "5     100      745     4.0  854194208   \n",
+       "6     100      802     4.0  854194111   \n",
+       "8     100     1356     4.0  854194086   \n",
+       "\n",
+       "                                        title  \n",
+       "3   Twelve Monkeys (a.k.a. 12 Monkeys) (1995)  \n",
+       "7  Willy Wonka & the Chocolate Factory (1971)  \n",
+       "0                            Toy Story (1995)  \n",
+       "1                     Grumpier Old Men (1995)  \n",
+       "2                    Leaving Las Vegas (1995)  \n",
+       "4                                Fargo (1996)  \n",
+       "5      Wallace & Gromit: A Close Shave (1995)  \n",
+       "6                           Phenomenon (1996)  \n",
+       "8             Star Trek: First Contact (1996)  "
+      ]
+     },
+     "execution_count": 224,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "userId = 100\n",
+    "user_preferences = ratings[(ratings['userId']==userId)&(ratings['rating']>=4)]\n",
+    "user_preferences = user_preferences.merge(movies[['movieId', 'title']])\n",
+    "user_preferences.sort_values('rating', ascending=False)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 225,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Top 5 Recommendations for UserId 100:\n",
+      "Forrest Gump (1994)\n",
+      "Fugitive, The (1993)\n",
+      "Jurassic Park (1993)\n",
+      "Pulp Fiction (1994)\n",
+      "Silence of the Lambs, The (1991)\n"
+     ]
+    }
+   ],
+   "source": [
+    "top_N = 5\n",
+    "\n",
+    "movie_titles = dict(zip(movies['movieId'], movies['title']))\n",
+    "\n",
+    "top_N_indices = new_X[user_mapper[userId]].argsort()[-top_N:][::-1]\n",
+    "\n",
+    "print(f\"Top {top_N} Recommendations for UserId {userId}:\")\n",
+    "for i in top_N_indices:\n",
+    "    movie_id = movie_inv_mapper[i]\n",
+    "    print(movie_titles[movie_id])"
+   ]
   }
  ],
  "metadata": {
