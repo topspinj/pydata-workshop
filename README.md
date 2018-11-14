@@ -17,3 +17,8 @@ By the end of this workshop, you will have a better understanding of the differe
 - pandas
 - numpy
 - matplotlib
+
+### Material
+
+- See notebook [here](tutorial.ipynb)
+- See slides [here](recommender-slides.pdf)
