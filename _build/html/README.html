@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>PyDataDC Recommender System Workshop &mdash; pydata-workshop  documentation</title>
+  <title>Building a Recommender System from Scratch: Workshop Material for PyDataDC 2018 &mdash; pydata-workshop  documentation</title>
   
 
   
@@ -29,8 +29,7 @@
   <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="What is a recommender system?" href="recommender_basics.html" /> 
+    <link rel="search" title="Search" href="search.html" /> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -49,7 +48,7 @@
           
 
           
-            <a href="#" class="icon icon-home"> pydata-workshop
+            <a href="index.html" class="icon icon-home"> pydata-workshop
           
 
           
@@ -103,7 +102,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="#">pydata-workshop</a>
+          <a href="index.html">pydata-workshop</a>
         
       </nav>
 
@@ -132,15 +131,15 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="#">Docs</a> &raquo;</li>
+      <li><a href="index.html">Docs</a> &raquo;</li>
         
-      <li>PyDataDC Recommender System Workshop</li>
+      <li>Building a Recommender System from Scratch: Workshop Material for PyDataDC 2018</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/README.md.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -172,8 +171,8 @@
     margin-right: 4px;  /* make room for the exclamation icon */
 }
 </style>
-<div class="section" id="pydatadc-recommender-system-workshop">
-<h1>PyDataDC Recommender System Workshop<a class="headerlink" href="#pydatadc-recommender-system-workshop" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="building-a-recommender-system-from-scratch-workshop-material-for-pydatadc-2018">
+<span id="building-a-recommender-system-from-scratch-workshop-material-for-pydatadc-2018"></span><h1>Building a Recommender System from Scratch: Workshop Material for PyDataDC 2018<a class="headerlink" href="#building-a-recommender-system-from-scratch-workshop-material-for-pydatadc-2018" title="Permalink to this headline">¶</a></h1>
 <p>The recommendation system is a classic application of machine learning that aims to predict which item a user will like best. Personalized recommendations play an integral role for e-commerce platforms, with the goal of driving user engagement through item recommendations.</p>
 <p>In this workshop, we will build a recommendation system using data from the <a class="reference external" href="https://grouplens.org/datasets/movielens/">MovieLens dataset</a>. We will also cover the following topics on recommendations:</p>
 <ul class="simple">
@@ -183,37 +182,21 @@
 <li>recommendation model evaluation</li>
 </ul>
 <p>By the end of this workshop, you will have a better understanding of the different techniques and tools used to build recommendation systems in real-life scenarios.</p>
-<div class="section" id="environment-setup-instructions">
-<h2>Environment Setup Instructions:<a class="headerlink" href="#environment-setup-instructions" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="requirements">
+<span id="requirements"></span><h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>Option 1: Running Jupyter notebook locally</li>
-<li>Option 2: Running Jupyter notebook via Google Colab</li>
-</ul>
-<div class="toctree-wrapper compound">
-<p class="caption"><span class="caption-text">Recommender Basics:</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="recommender_basics.html">What is a recommender system?</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="recommender_basics.html#collaborative-filtering">Collaborative Filtering</a></li>
-<li class="toctree-l2"><a class="reference internal" href="recommender_basics.html#content-based-filtering">Content-based Filtering</a></li>
-</ul>
-</li>
+<li>Python 3+</li>
+<li>pandas</li>
+<li>numpy</li>
+<li>matplotlib</li>
 </ul>
 </div>
-<div class="toctree-wrapper compound">
-<p class="caption"><span class="caption-text">Workshop Material:</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="tutorial.html">Building a Recommender System from Scratch</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="tutorial.html#Step-1:-Import-Dependencies">Step 1: Import Dependencies</a></li>
-<li class="toctree-l2"><a class="reference internal" href="tutorial.html#Step-2:-Load-Data">Step 2: Load Data</a></li>
-<li class="toctree-l2"><a class="reference internal" href="tutorial.html#Step-3:-Exploratory-Data-Analysis">Step 3: Exploratory Data Analysis</a></li>
-<li class="toctree-l2"><a class="reference internal" href="tutorial.html#Step-4:-Data-Pre-processing">Step 4: Data Pre-processing</a></li>
-<li class="toctree-l2"><a class="reference internal" href="tutorial.html#Step-5:-Item-item-Recommendations-with-k-Nearest-Neighbors">Step 5: Item-item Recommendations with k-Nearest Neighbors</a></li>
-<li class="toctree-l2"><a class="reference internal" href="tutorial.html#Step-6:-Handling-the-cold-start-problem">Step 6: Handling the cold-start problem</a></li>
-<li class="toctree-l2"><a class="reference internal" href="tutorial.html#Step-7:-Dimensionality-Reduction-with-Matrix-Factorization-(advanced)">Step 7: Dimensionality Reduction with Matrix Factorization (advanced)</a></li>
+<div class="section" id="material">
+<span id="material"></span><h2>Material<a class="headerlink" href="#material" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>See notebook <a class="reference internal" href="tutorial.html"><span class="doc">here</span></a></li>
+<li>See slides <a class="reference external" href="recommender-slides.pdf">here</a></li>
 </ul>
-</li>
-</ul>
-</div>
 </div>
 </div>
 
@@ -222,13 +205,6 @@
            
           </div>
           <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="recommender_basics.html" class="btn btn-neutral float-right" title="What is a recommender system?" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-    </div>
   
 
   <hr/>
