@@ -20,7 +20,7 @@ import sphinx_rtd_theme
 
 # -- Project information -----------------------------------------------------
 
-project = 'pydata-tutorial'
+project = 'pydata-workshop'
 copyright = '2018, Jill Cates'
 author = 'Jill Cates'
 
@@ -80,6 +80,8 @@ pygments_style = None
 #
 html_theme = 'sphinx_rtd_theme'
 
+html_logo = "imgs/pydata.png"
+html_favicon = "imgs/favicon.ico"
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
 # documentation.

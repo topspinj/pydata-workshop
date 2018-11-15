@@ -3,7 +3,7 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-PyDataDC Recommender System Tutorial
+PyDataDC Recommender System Workshop
 =====================================
 
 The recommendation system is a classic application of machine learning that aims to predict which item a user will like best. Personalized recommendations play an integral role for e-commerce platforms, with the goal of driving user engagement through item recommendations.
@@ -17,7 +17,7 @@ In this workshop, we will build a recommendation system using data from the `Mov
 
 By the end of this workshop, you will have a better understanding of the different techniques and tools used to build recommendation systems in real-life scenarios.
 
-Environment Setup Instructions
+Environment Setup Instructions:
 -------------------------------
 - Option 1: Running Jupyter notebook locally
 - Option 2: Running Jupyter notebook via Google Colab
@@ -25,14 +25,6 @@ Environment Setup Instructions
 
 .. toctree::
    :maxdepth: 2
-   :caption: Contents:
+   :caption: Workshop Material:
 
    tutorial.ipynb
-
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
