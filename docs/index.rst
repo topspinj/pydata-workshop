@@ -32,5 +32,5 @@ Environment Setup Instructions:
    :maxdepth: 2
    :caption: Workshop Material:
 
-   tutorial.ipynb
+   ../tutorial.ipynb
 
