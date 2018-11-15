@@ -22,9 +22,15 @@ Environment Setup Instructions:
 - Option 1: Running Jupyter notebook locally
 - Option 2: Running Jupyter notebook via Google Colab
 
+.. toctree::
+   :maxdepth: 2
+   :caption: Recommender Basics:
+
+   recommender_basics.md
 
 .. toctree::
    :maxdepth: 2
    :caption: Workshop Material:
 
    tutorial.ipynb
+
