@@ -16,7 +16,10 @@ By the end of this workshop, you will have a better understanding of the differe
 - Python 3+
 - pandas
 - numpy
+- scipy
 - matplotlib
+- seaborn
+- scikit-learn
 
 ### Material
 
