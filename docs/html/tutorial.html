@@ -998,6 +998,26 @@ known as a “utility” matrix. In this matrix, rows represent users and
 columns represent movies. The beauty of collaborative filtering is that
 it doesn’t require any information about the users or the movies user to
 generate recommendations.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="k">import</span> <span class="n">Image</span>
+<span class="n">Image</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s2">&quot;imgs/user-movie-matrix.png&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>Out[2]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<img alt="_images/tutorial_29_0.png" src="_images/tutorial_29_0.png" />
+</div>
+</div>
 <p>The <code class="docutils literal notranslate"><span class="pre">create_X()</span></code> function outputs a sparse matrix X with four mapper
 dictionaries:</p>
 <ul class="simple">
@@ -1156,7 +1176,7 @@ Least rated movie has 1 ratings.
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="_images/tutorial_36_0.png" src="_images/tutorial_36_0.png" />
+<img alt="_images/tutorial_37_0.png" src="_images/tutorial_37_0.png" />
 </div>
 </div>
 </div>
@@ -1744,6 +1764,25 @@ latent feature may represent movies which are independent foreign
 language films.</p>
 <div class="math notranslate nohighlight">
 \[X_{mn}\approx P_{mk}\times Q_{nk}^T = \hat{X}\]</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">Image</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s2">&quot;imgs/matrix-factorization.png&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>Out[3]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<img alt="_images/tutorial_67_0.png" src="_images/tutorial_67_0.png" />
+</div>
+</div>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
 <span></span>In [38]:
