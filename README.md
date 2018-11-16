@@ -23,5 +23,6 @@ By the end of this workshop, you will have a better understanding of the differe
 
 ### Material
 
+- Documentation is hosted [here](https://topspinj.github.io/pydata-workshop).
 - See notebook [here](tutorial.ipynb)
 - See slides [here](recommender-slides.pdf)
