@@ -179,29 +179,29 @@
 </style>
 <div class="section" id="what-is-a-recommender-system">
 <span id="what-is-a-recommender-system"></span><h1>What is a recommender system?<a class="headerlink" href="#what-is-a-recommender-system" title="Permalink to this headline">¶</a></h1>
-<p>A recoommender system is an algorithm that predicts a user’s preference toward an item. In the context of e-commerce, the role of the recommender is to <strong>drive user engagement</strong>.</p>
-<p><strong>Examples:</strong></p>
+<p>A recommender system is an application of machine learning that predicts  future behavior based on our historical preferences. In the context of e-commerce, a recommender will predict a person’s preferences toward a set of items, which effectively filters ou the most relevant items for that particular user.</p>
+<p><strong>Examples of recommender include:</strong></p>
 <ul class="simple">
 <li>recommending products based on past purchases or product searches (Amazon)</li>
 <li>suggesting TV shows or movies based on prediction of a user’s interests (Netflix)</li>
-<li>creating well-curated playlists based on song history (Spotify)</li>
+<li>creating personalized playlists based on song listening history (Spotify)</li>
 <li>personalized ads based on “liked” posts or previous websites visited (Facebook)</li>
 </ul>
 <p>The two most common recommender system techniques are: 1) collaborative filtering, and 2) content-based filtering.</p>
 <div class="section" id="collaborative-filtering">
 <span id="collaborative-filtering"></span><h2>Collaborative Filtering<a class="headerlink" href="#collaborative-filtering" title="Permalink to this headline">¶</a></h2>
-<p>Collaborative filering (CF) is based on the concept of <code class="docutils literal notranslate"><span class="pre">homophily</span></code> - similar people like similar things. It uses item preferences from other users to predict which item a particular user will like best. Collaborative filtering uses a user-item matrix to generate recommendations. This matrix is populated with values that indicate a given user’s preference towards a given item. It’s very unlikely that a user will have interacted with every item, so in most real-life cases, the user-item matrix is very sparse.</p>
-<p>Collaborative filtering can be further divided into two categories: memory-based and model-based.</p>
+<p>Collaborative filering (CF) is based on the concept of <code class="docutils literal notranslate"><span class="pre">homophily</span></code> - similar people like similar things. It predicts which item a user will like best based on the item preferences of other similar users. Collaborative filtering uses a user-item (utility) matrix to generate recommendations. This matrix is populated with values that indicate a user’s degree of preference towards a given item. These values can represent either explicit feedback (direct user ratings) or implicit feedback (indirect user behaviour such as listening, purchasing, watching). It’s extremely unlikely that a user will have interacted with every item in the matrix. In most cases, the user-item matrix is very sparse.</p>
+<p>Having a very sparse and high-dimensional matrix can lead to poor results. To overcome this problem, you can convert your original user-item matrix to a lower-dimensionality space using dimensionality reduction techniques such as Singular Value Decomposition (SVD) and Alternating Least Squares (ALS). These techniques work by factorizing the original user-item matrix into two factor matrices:</p>
 <ul class="simple">
-<li><strong>Memory-based</strong> algorithms look at item-item, user-item, or user-user similarity using different similarity metrics such as Pearson correlation coefficient and cosine similarity. This approach is easy to apply to the user-item matrix and very interpretable. However, its performance decreases as the dataset becomes more sparse.</li>
-<li><strong>Model-based</strong> algorithms use matrix factorization techniques such as Single Vector Decomposition (<a class="reference external" href="https://www.wikiwand.com/en/Singular-value_decomposition">SVD</a>) to extract latent, meaningful factors from the data.</li>
+<li>user-factor matrix</li>
+<li>item-factor matrix</li>
 </ul>
-<p>A major disadvantage of collaborative filtering is the <strong>cold-start problem</strong>. You can only get recommendations for users and items that already have “interactions” in the user-item matrix. Collaborative filtering fails to provide personalized recommendations for brand new users or newly released items.</p>
+<p>These factor matrices have latent features that represent the underlying interactions between users and items. Though we are not able to interpret what a latent feature represents, we can imagine that one latent feature may explain for users who like romance comedies from the 1990s, while another latent feature may symbolize independent foreign language films.</p>
 </div>
 <div class="section" id="content-based-filtering">
 <span id="content-based-filtering"></span><h2>Content-based Filtering<a class="headerlink" href="#content-based-filtering" title="Permalink to this headline">¶</a></h2>
-<p>Content-based filtering generates recommendations based on user and item features. Given a set of item features (movie genre, release date, country, language, etc.), it predicts how a user will rate an item based on their ratings of previous movies.</p>
-<p>Content-based filtering handles the cold-start problem because it is able to provide personalized recommendations for brand new users and features.</p>
+<p>A major disadvantage of collaborative filtering is the <strong>cold-start problem</strong>. You can only get recommendations for users and items that already have “interactions” in the user-item matrix. Collaborative filtering fails to provide personalized recommendations for brand new users or newly released items.</p>
+<p>Content-based filtering handles the cold-start problem because it can generate recommendations for users based on their features and the features of the items. Given a set of item features (movie genre, release date, country, language, etc.), it predicts how a user will rate an item based on their ratings of previous movies.</p>
 </div>
 </div>
 
