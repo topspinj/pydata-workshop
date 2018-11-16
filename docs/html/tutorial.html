@@ -105,9 +105,10 @@
 <li class="toctree-l2"><a class="reference internal" href="#Step-5:-Item-item-Recommendations-with-k-Nearest-Neighbors">Step 5: Item-item Recommendations with k-Nearest Neighbors</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#Step-6:-Handling-the-cold-start-problem">Step 6: Handling the cold-start problem</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#Step-7:-Dimensionality-Reduction-with-Matrix-Factorization-(advanced)">Step 7: Dimensionality Reduction with Matrix Factorization (advanced)</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#Predicting-missing-ratings-with-SVD">Predicting missing ratings with SVD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Predicting-missing-ratings-to-generate-top-N-recommendations">Predicting missing ratings to generate top N recommendations</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#Step-8:-Evaluation">Step 8: Evaluation</a></li>
 </ul>
 </li>
 </ul>
@@ -375,7 +376,7 @@ to represent our data. We will visualize our data with
 </ul>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [1]:
+<span></span>In [3]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -404,7 +405,7 @@ repository:</p>
 </ul>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [2]:
+<span></span>In [5]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -414,7 +415,7 @@ repository:</p>
 </div>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [3]:
+<span></span>In [6]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -427,7 +428,7 @@ repository:</p>
 <h2>Step 3: Exploratory Data Analysis<a class="headerlink" href="#Step-3:-Exploratory-Data-Analysis" title="Permalink to this headline">¶</a></h2>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [4]:
+<span></span>In [7]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -457,7 +458,7 @@ Average number of ratings per movie: 10.37
 </div>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [5]:
+<span></span>In [8]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -476,7 +477,7 @@ Average number of ratings per movie: 10.37
 </div>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [6]:
+<span></span>In [9]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -501,7 +502,7 @@ Mean rating per user: 3.66.
 <p>Which movie has the lowest and highest average rating?</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [7]:
+<span></span>In [10]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -514,7 +515,7 @@ Mean rating per user: 3.66.
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>Out[7]:
+<span></span>Out[10]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -555,7 +556,7 @@ Mean rating per user: 3.66.
 <p><code class="docutils literal notranslate"><span class="pre">Gypsy</span></code> has the lowest average rating.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [8]:
+<span></span>In [12]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -566,7 +567,7 @@ Mean rating per user: 3.66.
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>Out[8]:
+<span></span>Out[12]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -619,7 +620,7 @@ defintion, C represents “the typical data set size”. Let’s make
 <span class="math notranslate nohighlight">\(C\)</span> be the average number of ratings for a given movie.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [9]:
+<span></span>In [13]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -630,7 +631,7 @@ defintion, C represents “the typical data set size”. Let’s make
 </div>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [10]:
+<span></span>In [14]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -649,7 +650,7 @@ defintion, C represents “the typical data set size”. Let’s make
 </div>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [11]:
+<span></span>In [15]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -660,7 +661,7 @@ defintion, C represents “the typical data set size”. Let’s make
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>Out[11]:
+<span></span>Out[15]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -740,7 +741,7 @@ movies. This result makes much more sense since these movies are
 critically acclaimed films.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [12]:
+<span></span>In [16]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -750,7 +751,7 @@ critically acclaimed films.</p>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>Out[12]:
+<span></span>Out[16]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -840,7 +841,7 @@ year from each title string and create a new column for it.</li>
 </ul>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [13]:
+<span></span>In [17]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -851,7 +852,7 @@ year from each title string and create a new column for it.</li>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>Out[13]:
+<span></span>Out[17]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -916,7 +917,7 @@ year from each title string and create a new column for it.</li>
 <p><strong>How many movie genres are there?</strong></p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [14]:
+<span></span>In [18]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -940,7 +941,7 @@ There are 20 genres.
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>Out[14]:
+<span></span>Out[18]:
 </pre></div>
 </div>
 <div class="output_area highlight-none notranslate"><div class="highlight"><pre>
@@ -969,7 +970,7 @@ There are 20 genres.
 </div>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [15]:
+<span></span>In [19]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1000,18 +1001,19 @@ it doesn’t require any information about the users or the movies user to
 generate recommendations.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [2]:
+<span></span>In [22]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="k">import</span> <span class="n">Image</span>
-<span class="n">Image</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s2">&quot;imgs/user-movie-matrix.png&quot;</span><span class="p">)</span>
+
+<span class="n">Image</span><span class="p">(</span><span class="s2">&quot;imgs/user-movie-matrix.png&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>Out[2]:
+<span></span>Out[22]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -1033,7 +1035,7 @@ utility matrix corresponds to which user/movie id.</p>
 which stores the data sparsely.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [17]:
+<span></span>In [23]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1080,7 +1082,7 @@ total number of elements. The number of stored (non-empty) elements in
 our matrix is equivalent to the number of ratings in our dataset.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [18]:
+<span></span>In [24]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1107,7 +1109,7 @@ and movies have at least one rating but in general, it’s useful to check
 which users and movies have few interactions.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [19]:
+<span></span>In [25]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1129,7 +1131,7 @@ Least active user rated 20 movies.
 </div>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [20]:
+<span></span>In [26]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1151,7 +1153,7 @@ Least rated movie has 1 ratings.
 </div>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [21]:
+<span></span>In [27]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1187,7 +1189,7 @@ Least rated movie has 1 ratings.
 each movie’s rating.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [22]:
+<span></span>In [28]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1203,7 +1205,7 @@ same shape as our utility matrix <code class="docutils literal notranslate"><spa
 <code class="docutils literal notranslate"><span class="pre">tile</span></code> method is useful for this task.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [23]:
+<span></span>In [29]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1213,7 +1215,7 @@ same shape as our utility matrix <code class="docutils literal notranslate"><spa
 </div>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [24]:
+<span></span>In [30]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1223,7 +1225,7 @@ same shape as our utility matrix <code class="docutils literal notranslate"><spa
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>Out[24]:
+<span></span>Out[30]:
 </pre></div>
 </div>
 <div class="output_area highlight-none notranslate"><div class="highlight"><pre>
@@ -1237,7 +1239,7 @@ column is populated with a given movie’s mean rating.</p>
 from original <code class="docutils literal notranslate"><span class="pre">X</span></code>.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [25]:
+<span></span>In [31]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1250,7 +1252,7 @@ that are empty in the original matrix are now replaced with negative
 values representing the mean rating of a given movie.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [26]:
+<span></span>In [35]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1277,7 +1279,7 @@ Normalized X: [[ 0.07906977 -3.43181818  0.74038462 ... -3.5        -3.5
 user engagement vectors for movie <span class="math notranslate nohighlight">\(i\)</span>.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [27]:
+<span></span>In [36]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1321,22 +1323,22 @@ of interest.</p>
 that maps movieId to title so that our results are interpretable.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [28]:
+<span></span>In [40]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">similar_movies</span> <span class="o">=</span> <span class="n">find_similar_movies</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">X_norm</span><span class="p">,</span> <span class="n">movie_mapper</span><span class="p">,</span> <span class="n">movie_inv_mapper</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span></span><span class="n">similar_movies</span> <span class="o">=</span> <span class="n">find_similar_movies</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">X_norm</span><span class="p">,</span> <span class="n">movie_mapper</span><span class="p">,</span> <span class="n">movie_inv_mapper</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 <span class="n">similar_movies</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>Out[28]:
+<span></span>Out[40]:
 </pre></div>
 </div>
 <div class="output_area highlight-none notranslate"><div class="highlight"><pre>
-<span></span>[158, 45431, 37727, 8947, 27706, 6659, 2059, 303, 8640]
+<span></span>[3114, 78499, 2054, 788, 2355, 2018, 596, 2078, 673]
 </pre></div>
 </div>
 </div>
@@ -1346,7 +1348,7 @@ titles so that we can interpret our results. To make things easier, we
 will create a dictionary that maps <code class="docutils literal notranslate"><span class="pre">movieId</span></code> to <code class="docutils literal notranslate"><span class="pre">title</span></code>.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [29]:
+<span></span>In [41]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1380,9 +1382,9 @@ Jungle Book, The (1967)
 Space Jam (1996)
 </pre></div></div>
 </div>
-<p>The results above show the 10 most similar movies to Toy Story. Most
-movies in this list are family movies from the 1990s, which seems pretty
-reasonable. Note that these recommendations are based solely on
+<p>The results above show the 10 movies that are most similar to Toy Story.
+Most movies in this list are family movies from the 1990s, which seems
+pretty reasonable. Note that these recommendations are based solely on
 user-item ratings. Movie features such as genres are not used in this
 approach.</p>
 <p>You can also play around with the kNN distance metric and see what
@@ -1390,7 +1392,7 @@ results you would get if you use “manhattan” or “euclidean” instead of
 “cosine”.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [30]:
+<span></span>In [42]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1436,7 +1438,7 @@ Each genre will have its own column in the dataframe, and will be
 populated with 0 or 1.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [31]:
+<span></span>In [43]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1455,7 +1457,7 @@ There are 9742 unique movies in our movies dataset.
 </div>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [32]:
+<span></span>In [44]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1470,7 +1472,7 @@ There are 9742 unique movies in our movies dataset.
 </div>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [33]:
+<span></span>In [45]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1480,7 +1482,7 @@ There are 9742 unique movies in our movies dataset.
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>Out[33]:
+<span></span>Out[45]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -1502,26 +1504,26 @@ There are 9742 unique movies in our movies dataset.
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>Romance</th>
-      <th>Drama</th>
-      <th>Crime</th>
-      <th>Comedy</th>
-      <th>Adventure</th>
-      <th>Action</th>
-      <th>Animation</th>
-      <th>Musical</th>
-      <th>IMAX</th>
-      <th>Mystery</th>
-      <th>Thriller</th>
-      <th>War</th>
-      <th>Fantasy</th>
-      <th>Children</th>
-      <th>(no genres listed)</th>
-      <th>Film-Noir</th>
       <th>Horror</th>
-      <th>Sci-Fi</th>
-      <th>Documentary</th>
       <th>Western</th>
+      <th>Drama</th>
+      <th>Film-Noir</th>
+      <th>Adventure</th>
+      <th>Thriller</th>
+      <th>IMAX</th>
+      <th>Documentary</th>
+      <th>Sci-Fi</th>
+      <th>Children</th>
+      <th>Musical</th>
+      <th>Comedy</th>
+      <th>War</th>
+      <th>Romance</th>
+      <th>Mystery</th>
+      <th>(no genres listed)</th>
+      <th>Crime</th>
+      <th>Fantasy</th>
+      <th>Animation</th>
+      <th>Action</th>
     </tr>
   </thead>
   <tbody>
@@ -1530,22 +1532,22 @@ There are 9742 unique movies in our movies dataset.
       <td>0</td>
       <td>0</td>
       <td>0</td>
-      <td>1</td>
-      <td>1</td>
       <td>0</td>
       <td>1</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
       <td>0</td>
       <td>1</td>
       <td>1</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
       <td>0</td>
     </tr>
     <tr>
@@ -1559,34 +1561,34 @@ There are 9742 unique movies in our movies dataset.
       <td>0</td>
       <td>0</td>
       <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
       <td>1</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
       <td>0</td>
       <td>0</td>
     </tr>
     <tr>
       <th>2</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
       <td>1</td>
       <td>0</td>
-      <td>0</td>
       <td>1</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
@@ -1596,20 +1598,20 @@ There are 9742 unique movies in our movies dataset.
     </tr>
     <tr>
       <th>3</th>
+      <td>0</td>
+      <td>0</td>
       <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
       <td>1</td>
       <td>0</td>
       <td>1</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
@@ -1622,15 +1624,15 @@ There are 9742 unique movies in our movies dataset.
       <td>0</td>
       <td>0</td>
       <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
       <td>1</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
@@ -1646,7 +1648,7 @@ There are 9742 unique movies in our movies dataset.
 </div>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [34]:
+<span></span>In [46]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1669,7 +1671,7 @@ Dimensions of our genres cosine similarity matrix: (9742, 9742)
 where <span class="math notranslate nohighlight">\(M\)</span> represents the total number of movies.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [35]:
+<span></span>In [47]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1682,7 +1684,7 @@ where <span class="math notranslate nohighlight">\(M\)</span> represents the tot
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>Out[35]:
+<span></span>Out[47]:
 </pre></div>
 </div>
 <div class="output_area highlight-none notranslate"><div class="highlight"><pre>
@@ -1692,7 +1694,7 @@ where <span class="math notranslate nohighlight">\(M\)</span> represents the tot
 </div>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [36]:
+<span></span>In [48]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1721,7 +1723,7 @@ Recommendations for Toy Story (1995):
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>Out[36]:
+<span></span>Out[48]:
 </pre></div>
 </div>
 <div class="output_area highlight-none notranslate"><div class="highlight"><pre>
@@ -1766,17 +1768,17 @@ language films.</p>
 \[X_{mn}\approx P_{mk}\times Q_{nk}^T = \hat{X}\]</div>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [3]:
+<span></span>In [61]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">Image</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s2">&quot;imgs/matrix-factorization.png&quot;</span><span class="p">)</span>
+<span></span><span class="n">Image</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s1">&#39;imgs/matrix-factorization.png&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>Out[3]:
+<span></span>Out[61]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -1785,7 +1787,7 @@ language films.</p>
 </div>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [38]:
+<span></span>In [49]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1795,23 +1797,22 @@ language films.</p>
 </div>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [39]:
+<span></span>In [56]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">svd</span> <span class="o">=</span> <span class="n">TruncatedSVD</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">n_iter</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">123</span><span class="p">)</span>
+<span></span><span class="n">svd</span> <span class="o">=</span> <span class="n">TruncatedSVD</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">n_iter</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 <span class="n">Z</span> <span class="o">=</span> <span class="n">svd</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [40]:
+<span></span>In [60]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="n">movie_id</span> <span class="o">=</span> <span class="mi">1</span>
-
 <span class="n">similar_movies</span> <span class="o">=</span> <span class="n">find_similar_movies</span><span class="p">(</span><span class="n">movie_id</span><span class="p">,</span> <span class="n">Z</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">movie_mapper</span><span class="p">,</span> <span class="n">movie_inv_mapper</span><span class="p">,</span> <span class="n">metric</span><span class="o">=</span><span class="s1">&#39;cosine&#39;</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 <span class="n">movie_title</span> <span class="o">=</span> <span class="n">movie_titles</span><span class="p">[</span><span class="n">movie_id</span><span class="p">]</span>
 
@@ -1827,31 +1828,31 @@ language films.</p>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 Because you watched Toy Story (1995):
-Back to the Future (1985)
-Star Wars: Episode IV - A New Hope (1977)
-Groundhog Day (1993)
-Independence Day (a.k.a. ID4) (1996)
-Star Wars: Episode VI - Return of the Jedi (1983)
-Toy Story 2 (1999)
-Willy Wonka &amp; the Chocolate Factory (1971)
-Jurassic Park (1993)
 Home Alone (1990)
+Jurassic Park (1993)
+Aladdin (1992)
+Willy Wonka &amp; the Chocolate Factory (1971)
+Back to the Future (1985)
+Forrest Gump (1994)
+Groundhog Day (1993)
+Star Wars: Episode IV - A New Hope (1977)
+Princess Bride, The (1987)
 </pre></div></div>
 </div>
 <p>The results above are the most similar movies to Toy Story using kNN on
 our “compressed” movie-factor matrix. We reduced the dimensions down to
-<code class="docutils literal notranslate"><span class="pre">n_components=30</span></code>. We can think of each component representing a
-latent feature such as movie genre.</p>
-<div class="section" id="Predicting-missing-ratings-with-SVD">
-<h3>Predicting missing ratings with SVD<a class="headerlink" href="#Predicting-missing-ratings-with-SVD" title="Permalink to this headline">¶</a></h3>
+n_components=30. We can think of each component representing a latent
+feature such as movie genre.</p>
+<div class="section" id="Predicting-missing-ratings-to-generate-top-N-recommendations">
+<h3>Predicting missing ratings to generate top N recommendations<a class="headerlink" href="#Predicting-missing-ratings-to-generate-top-N-recommendations" title="Permalink to this headline">¶</a></h3>
 <p>With matrix factorization, we can also predict missing ratings in our
 original user-item matrix. We can do this by reconstructing our matrix
 by getting the inner product of our user-factor matrix and movie-factor
 matrix. We can use the <code class="docutils literal notranslate"><span class="pre">inverse_transform</span></code> on our movie-factor matrix
-<code class="docutils literal notranslate"><span class="pre">Z</span></code> to get our reconstructed user-item matrix.</p>
+Z to get our reconstructed user-item matrix.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [41]:
+<span></span>In [65]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1863,7 +1864,7 @@ matrix. We can use the <code class="docutils literal notranslate"><span class="p
 can see which movies that have been rated highly:</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [42]:
+<span></span>In [68]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1876,7 +1877,7 @@ can see which movies that have been rated highly:</p>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>Out[42]:
+<span></span>Out[68]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -1990,14 +1991,14 @@ can see which movies that have been rated highly:</p>
 </table>
 </div></div>
 </div>
-<p>Now, let’s take a look at which movies we predict that they will like
-based on their previous ratings. We will need get the row which
+<p>Now, let’s take a look at which movies we predict <code class="docutils literal notranslate"><span class="pre">userId=100</span></code> will
+like based on their previous ratings. We will need get the row which
 represents <code class="docutils literal notranslate"><span class="pre">userId=100</span></code> and sort their predicted ratings in descending
 order. <code class="docutils literal notranslate"><span class="pre">np.argsort()</span></code> is a useful method for getting the top N indices
 (i.e., movies with highest rating predictions) for <code class="docutils literal notranslate"><span class="pre">userId=100</span></code>.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [43]:
+<span></span>In [67]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -2020,19 +2021,64 @@ order. <code class="docutils literal notranslate"><span class="pre">np.argsort()
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 Top 10 Recommendations for UserId 100:
+Forrest Gump (1994)
 Pretty Woman (1990)
 When Harry Met Sally... (1989)
+Apollo 13 (1995)
+Toy Story (1995)
+Shakespeare in Love (1998)
+Aladdin (1992)
+Clueless (1995)
 Princess Bride, The (1987)
-Breakfast Club, The (1985)
 Four Weddings and a Funeral (1994)
-Dead Poets Society (1989)
-Forrest Gump (1994)
-Good Will Hunting (1997)
-Jerry Maguire (1996)
-Stand by Me (1986)
 </pre></div></div>
 </div>
 </div>
+</div>
+<div class="section" id="Step-8:-Evaluation">
+<h2>Step 8: Evaluation<a class="headerlink" href="#Step-8:-Evaluation" title="Permalink to this headline">¶</a></h2>
+<p>How do we know if our recommendations are good? The best way to evaluate
+our system is to test it in the wild with A/B testing or usability
+tests, where we can get direct feedback from users. However, this option
+is not always available which means that we need to use offline metrics.</p>
+<p>In traditional machine learning, we evaluate a model by splitting our
+data into two sets: 1) <code class="docutils literal notranslate"><span class="pre">training</span> <span class="pre">set</span></code> and 2) <code class="docutils literal notranslate"><span class="pre">validation</span> <span class="pre">set</span></code>. We
+train our model using the <code class="docutils literal notranslate"><span class="pre">training</span> <span class="pre">set</span></code>, then test our model on the
+<code class="docutils literal notranslate"><span class="pre">validation</span> <span class="pre">set</span></code>. In recommender systems, we can’t split our data the
+traditional way because our model won’t work if our training set
+represents a completely different user population than the validation
+set. Instead, we generate our <code class="docutils literal notranslate"><span class="pre">training</span> <span class="pre">set</span></code> by masking random
+interactions in our user-item matrix. In other words, we pretend that we
+don’t if a user liked or hated Movie X, but we actually do. Once we
+train our model and generate our rating predictions, we can then compare
+our predicted rating with the actual rating.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [71]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">Image</span><span class="p">(</span><span class="s2">&quot;imgs/splitting.png&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>Out[71]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<img alt="_images/tutorial_81_0.png" src="_images/tutorial_81_0.png" />
+</div>
+</div>
+<p>There are various ways to compare our predicted vs.&nbsp;actual ratings. The
+most common metrics include:</p>
+<ol class="arabic simple">
+<li>Root Mean Squared Error:
+<span class="math notranslate nohighlight">\(\text{RMSE} = \sqrt{\frac{\Sigma^N_{i=1}(y-\hat{y})^2}{N}}\)</span></li>
+<li>Precision: <span class="math notranslate nohighlight">\(\text{Precision} = \frac{TP}{TP+FP}\)</span></li>
+<li>Recall: <span class="math notranslate nohighlight">\(\text{Recall} = \frac{TP}{TP+FN}\)</span></li>
+</ol>
 </div>
 </div>
 

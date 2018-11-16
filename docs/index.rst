@@ -13,9 +13,11 @@ In this workshop, we will build a recommendation system using data from the `Mov
 - collaborative vs. content-based filtering
 - implicit vs. explicit feedback
 - handling the cold start problem
-- recommendation model evaluation
+- evaluation metrics
 
 By the end of this workshop, you will have a better understanding of the different techniques and tools used to build recommendation systems in real-life scenarios.
+
+See slides for this workshop `here <https://topspinj.github.io/presentations/recommender-tutorial-pydatadc.pdf/>`_.
 
 Environment Setup Instructions:
 -------------------------------
