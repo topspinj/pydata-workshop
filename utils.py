@@ -11,10 +11,10 @@ from sklearn.neighbors import NearestNeighbors
 def create_X(df):
     """
     Generates a sparse matrix from ratings dataframe.
-    
+
     Args:
         df: pandas dataframe containing 3 columns (userId, movieId, rating)
-    
+
     Returns:
         X: sparse matrix
         user_mapper: dict that maps user id's to user indices
@@ -22,24 +22,24 @@ def create_X(df):
         movie_mapper: dict that maps movie id's to movie indices
         movie_inv_mapper: dict that maps movie indices to movie id's
     """
-    N = df['userId'].nunique()
-    M = df['movieId'].nunique()
+    M = df['userId'].nunique()
+    N = df['movieId'].nunique()
 
-    user_mapper = dict(zip(np.unique(df["userId"]), list(range(N))))
-    movie_mapper = dict(zip(np.unique(df["movieId"]), list(range(M))))
-    
-    user_inv_mapper = dict(zip(list(range(N)), np.unique(df["userId"])))
-    movie_inv_mapper = dict(zip(list(range(M)), np.unique(df["movieId"])))
-    
+    user_mapper = dict(zip(np.unique(df["userId"]), list(range(M))))
+    movie_mapper = dict(zip(np.unique(df["movieId"]), list(range(N))))
+
+    user_inv_mapper = dict(zip(list(range(M)), np.unique(df["userId"])))
+    movie_inv_mapper = dict(zip(list(range(N)), np.unique(df["movieId"])))
+
     user_index = [user_mapper[i] for i in df['userId']]
     item_index = [movie_mapper[i] for i in df['movieId']]
 
-    X = csr_matrix((df["rating"], (item_index, user_index)), shape=(M, N))
-    
+    X = csr_matrix((df["rating"], (user_index,item_index)), shape=(M,N))
+
     return X, user_mapper, movie_mapper, user_inv_mapper, movie_inv_mapper
 
 
-def find_similar_movies(movie_id, X, k, metric='cosine', show_distance=False):
+def find_similar_movies(movie_id, X, movie_mapper, movie_inv_mapper, k, metric='cosine'):
     """
     Finds k-nearest neighbours for a given movie id.
     
@@ -51,16 +51,17 @@ def find_similar_movies(movie_id, X, k, metric='cosine', show_distance=False):
     
     Output: returns list of k similar movie ID's
     """
+    X = X.T
     neighbour_ids = []
     
     movie_ind = movie_mapper[movie_id]
     movie_vec = X[movie_ind]
-    k+=1
-    kNN = NearestNeighbors(n_neighbors=k, algorithm="brute", metric=metric)
-    kNN.fit(X)
     if isinstance(movie_vec, (np.ndarray)):
         movie_vec = movie_vec.reshape(1,-1)
-    neighbour = kNN.kneighbors(movie_vec, return_distance=show_distance)
+    # use k+1 since kNN output includes the movieId of interest
+    kNN = NearestNeighbors(n_neighbors=k+1, algorithm="brute", metric=metric)
+    kNN.fit(X)
+    neighbour = kNN.kneighbors(movie_vec, return_distance=False)
     for i in range(0,k):
         n = neighbour.item(i)
         neighbour_ids.append(movie_inv_mapper[n])
